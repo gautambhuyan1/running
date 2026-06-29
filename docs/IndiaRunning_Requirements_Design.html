@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RunBhaarat – Requirements & Design Document</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --brand: #E84621;
+    --brand-dark: #C03518;
+    --brand-light: #FEF0EC;
+    --brand-mid: #F7C2B4;
+    --accent: #FF8C42;
+    --accent2: #1A2B4A;
+    --neutral: #F4F2EE;
+    --border: #E8E4DE;
+    --text: #1C1917;
+    --text-muted: #6B6560;
+    --text-light: #A09890;
+    --success: #1D7A4F;
+    --success-bg: #E8F5EE;
+    --warn: #B45309;
+    --warn-bg: #FEF3C7;
+    --info: #1A56B0;
+    --info-bg: #EBF3FF;
+    --white: #FFFFFF;
+    --shadow: 0 1px 4px rgba(28,25,23,0.08);
+    --shadow-md: 0 4px 16px rgba(28,25,23,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px; line-height: 1.7;
+    color: var(--text);
+    background: #FAF8F5;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--brand);
+    padding: 0 2rem;
+    display: flex; align-items: center; gap: 0; height: 56px;
+    box-shadow: 0 2px 8px rgba(232,70,33,0.3);
+  }
+  .nav-logo {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700; font-size: 20px;
+    color: #fff; letter-spacing: -0.5px;
+    margin-right: 2rem; white-space: nowrap;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 0; overflow-x: auto; }
+  .nav-links a {
+    color: rgba(255,255,255,0.82);
+    text-decoration: none;
+    font-size: 13px; font-weight: 500;
+    padding: 0 14px; height: 56px;
+    display: flex; align-items: center;
+    white-space: nowrap;
+    transition: background 0.15s, color 0.15s;
+    border-bottom: 3px solid transparent;
+  }
+  .nav-links a:hover { background: rgba(255,255,255,0.12); color: #fff; border-bottom-color: var(--accent); }
+  .nav-badge {
+    background: var(--accent); color: #fff;
+    font-size: 10px; font-weight: 700;
+    padding: 2px 6px; border-radius: 20px;
+    margin-left: 4px; letter-spacing: 0.3px;
+  }
+
+  /* ── LAYOUT ── */
+  .wrapper { max-width: 1100px; margin: 0 auto; padding: 0 2rem 6rem; }
+
+  /* ── HERO SECTION ── */
+  .hero {
+    background: linear-gradient(135deg, var(--brand) 0%, #B83318 55%, var(--accent2) 100%);
+    padding: 3.5rem 2rem 3rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; right: -60px; top: -60px;
+    width: 380px; height: 380px;
+    background: rgba(255,140,66,0.12);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; right: 120px; bottom: -80px;
+    width: 240px; height: 240px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+  .hero-inner { max-width: 1100px; margin: 0 auto; position: relative; }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.9);
+    font-size: 12px; font-weight: 600;
+    padding: 4px 12px; border-radius: 20px;
+    letter-spacing: 0.8px; text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .hero h1 {
+    font-family: 'Sora', sans-serif;
+    font-size: 2.6rem; font-weight: 700;
+    color: #fff; line-height: 1.15;
+    letter-spacing: -1px; margin-bottom: 0.75rem;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-sub { color: rgba(255,255,255,0.8); font-size: 15px; max-width: 520px; margin-bottom: 2rem; }
+  .hero-meta { display: flex; gap: 2rem; flex-wrap: wrap; }
+  .hero-stat { text-align: center; }
+  .hero-stat .num {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.6rem; font-weight: 700; color: #fff;
+  }
+  .hero-stat .lbl { font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 2px; }
+
+  /* ── SECTION ── */
+  section { padding: 3rem 0 1rem; }
+  .sec-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
+  .sec-number {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--brand); color: #fff;
+    font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .sec-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.3rem; font-weight: 700;
+    color: var(--text); letter-spacing: -0.3px;
+  }
+  .sec-divider { height: 2px; background: linear-gradient(90deg, var(--brand) 0%, transparent 100%); margin-bottom: 2rem; border-radius: 2px; }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+  }
+  .card-grid { display: grid; gap: 1rem; }
+  .card-grid-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .card-grid-3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .card-grid-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+  /* ── FEATURE CARDS ── */
+  .feat-card { border-left: 3px solid var(--brand); }
+  .feat-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--brand-light); display: flex;
+    align-items: center; justify-content: center;
+    font-size: 20px; margin-bottom: 0.75rem;
+  }
+  .feat-title { font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .feat-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+  /* ── REQUIREMENT TABLE ── */
+  .req-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .req-table thead tr { background: var(--brand); }
+  .req-table thead th { color: #fff; font-family: 'Sora', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.5px; text-align: left; padding: 10px 14px; }
+  .req-table tbody tr { border-bottom: 1px solid var(--border); }
+  .req-table tbody tr:nth-child(even) { background: var(--neutral); }
+  .req-table tbody tr:hover { background: var(--brand-light); }
+  .req-table td { padding: 10px 14px; vertical-align: top; }
+  .req-table td:first-child { font-weight: 500; white-space: nowrap; color: var(--brand-dark); font-family: 'Sora', sans-serif; font-size: 13px; }
+
+  /* ── BADGES ── */
+  .badge {
+    display: inline-block; font-size: 11px; font-weight: 600;
+    padding: 3px 8px; border-radius: 20px; letter-spacing: 0.3px;
+  }
+  .badge-high { background: #FEE2E2; color: #991B1B; }
+  .badge-med  { background: var(--warn-bg); color: var(--warn); }
+  .badge-low  { background: var(--info-bg); color: var(--info); }
+  .badge-done { background: var(--success-bg); color: var(--success); }
+  .badge-tech { background: var(--neutral); color: var(--text-muted); border: 1px solid var(--border); }
+
+  /* ── SITEMAP ── */
+  .sitemap { display: flex; flex-direction: column; gap: 8px; }
+  .sitemap-page { background: var(--white); border: 1px solid var(--border); border-radius: 10px; }
+  .sitemap-main {
+    background: var(--brand); color: #fff;
+    padding: 10px 16px; border-radius: 10px 10px 0 0;
+    font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 600;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .sitemap-main.no-children { border-radius: 10px; }
+  .sitemap-children { padding: 8px 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .sitemap-child {
+    background: var(--neutral); border: 1px solid var(--border);
+    border-radius: 6px; padding: 4px 12px;
+    font-size: 13px; color: var(--text-muted); font-weight: 500;
+  }
+  .sitemap-icon { font-size: 16px; }
+
+  /* ── WIREFRAME MOCKUP ── */
+  .wireframe { background: var(--neutral); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; }
+  .wf-browser {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden;
+  }
+  .wf-bar {
+    background: #F8F6F3; border-bottom: 1px solid var(--border);
+    padding: 8px 12px; display: flex; align-items: center; gap: 8px;
+  }
+  .wf-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .wf-url { background: var(--neutral); border: 1px solid var(--border); border-radius: 4px; flex: 1; height: 22px; max-width: 320px; }
+  .wf-nav { background: var(--brand); padding: 10px 16px; display: flex; align-items: center; gap: 12px; }
+  .wf-logo-box { background: rgba(255,255,255,0.2); border-radius: 4px; height: 22px; width: 80px; }
+  .wf-nav-item { background: rgba(255,255,255,0.15); border-radius: 4px; height: 18px; }
+  .wf-hero { background: linear-gradient(135deg, #C03518, #1A2B4A); padding: 20px 16px; }
+  .wf-hero-h { background: rgba(255,255,255,0.3); border-radius: 4px; height: 24px; width: 55%; margin-bottom: 8px; }
+  .wf-hero-sub { background: rgba(255,255,255,0.15); border-radius: 4px; height: 14px; width: 40%; margin-bottom: 12px; }
+  .wf-search {
+    background: rgba(255,255,255,0.9); border-radius: 8px;
+    padding: 8px 12px; display: flex; gap: 8px; align-items: center;
+  }
+  .wf-s-field { background: var(--neutral); border: 1px solid var(--border); border-radius: 4px; flex: 1; height: 28px; }
+  .wf-s-btn { background: var(--brand); border-radius: 4px; height: 28px; width: 64px; }
+  .wf-filters { padding: 10px 16px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .wf-filter-chip { background: var(--neutral); border: 1px solid var(--border); border-radius: 20px; padding: 3px 10px; font-size: 12px; color: var(--text-muted); }
+  .wf-filter-chip.active { background: var(--brand); color: #fff; border-color: var(--brand); }
+  .wf-events { padding: 10px 16px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .wf-event-card { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .wf-event-img { background: var(--neutral); height: 70px; }
+  .wf-event-body { padding: 8px; }
+  .wf-event-title { background: var(--neutral); border-radius: 3px; height: 12px; width: 80%; margin-bottom: 6px; }
+  .wf-event-meta { background: var(--neutral); border-radius: 3px; height: 10px; width: 55%; margin-bottom: 4px; }
+  .wf-event-price { background: var(--brand-light); border-radius: 3px; height: 10px; width: 35%; }
+  .wf-event-btn { background: var(--brand); height: 24px; margin: 6px 8px; border-radius: 4px; }
+
+  /* ── COLOR PALETTE ── */
+  .palette { display: flex; gap: 10px; flex-wrap: wrap; }
+  .swatch { text-align: center; }
+  .swatch-box { width: 64px; height: 64px; border-radius: 10px; border: 1px solid var(--border); margin-bottom: 4px; }
+  .swatch-name { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+  .swatch-hex { font-size: 10px; color: var(--text-light); font-family: monospace; }
+
+  /* ── TECH STACK ── */
+  .tech-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .tech-row:last-child { border-bottom: none; }
+  .tech-layer { font-size: 11px; font-weight: 600; color: var(--brand); min-width: 80px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .tech-stack-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tech-pill { background: var(--neutral); border: 1px solid var(--border); border-radius: 6px; padding: 3px 10px; font-size: 12px; color: var(--text); font-weight: 500; }
+
+  /* ── ENTITY CARD ── */
+  .entity { background: var(--white); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; font-size: 13px; }
+  .entity-head { background: var(--accent2); color: #fff; font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 600; padding: 8px 12px; }
+  .entity-field { display: flex; gap: 8px; padding: 6px 12px; border-bottom: 1px solid var(--border); align-items: center; }
+  .entity-field:last-child { border-bottom: none; }
+  .ef-icon { font-size: 11px; color: var(--text-light); min-width: 14px; }
+  .ef-name { font-weight: 500; color: var(--text); min-width: 110px; }
+  .ef-type { color: var(--text-muted); font-family: monospace; font-size: 12px; }
+  .ef-note { color: var(--text-light); font-size: 11px; margin-left: auto; }
+
+  /* ── RELATION ── */
+  .er-diagram { display: grid; gap: 1rem; }
+  .er-row { display: flex; align-items: center; gap: 8px; font-size: 13px; flex-wrap: wrap; }
+  .er-entity { background: var(--accent2); color: #fff; padding: 4px 12px; border-radius: 6px; font-weight: 600; font-family: 'Sora', sans-serif; font-size: 12px; }
+  .er-rel { color: var(--text-muted); font-style: italic; font-size: 12px; padding: 0 4px; }
+
+  /* ── API TABLE ── */
+  .api-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .api-table th { background: var(--accent2); color: #fff; text-align: left; padding: 8px 12px; font-family: 'Sora', sans-serif; font-size: 12px; font-weight: 600; }
+  .api-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .api-table tr:nth-child(even) td { background: var(--neutral); }
+  .method { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+  .method-get  { background: #DCFCE7; color: #166534; }
+  .method-post { background: #DBEAFE; color: #1E40AF; }
+  .method-put  { background: #FEF3C7; color: #92400E; }
+  .method-del  { background: #FEE2E2; color: #991B1B; }
+  .endpoint { font-family: monospace; font-size: 12px; color: var(--brand-dark); }
+
+  /* ── UX FLOW ── */
+  .flow { display: flex; align-items: center; gap: 0; flex-wrap: wrap; }
+  .flow-step {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 16px;
+    font-size: 13px; font-weight: 500; color: var(--text);
+    position: relative;
+  }
+  .flow-arrow { color: var(--brand); font-size: 20px; padding: 0 6px; line-height: 1; }
+  .flow-step.active { background: var(--brand); color: #fff; border-color: var(--brand); }
+
+  /* ── SECTION BLOCK ── */
+  .content-block { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 1rem; }
+  .content-block strong { color: var(--text); }
+
+  /* ── FOOTER ── */
+  footer { background: var(--accent2); color: rgba(255,255,255,0.6); text-align: center; padding: 1.5rem; font-size: 13px; margin-top: 4rem; }
+  footer strong { color: #fff; }
+
+  @media(max-width: 640px) {
+    .hero h1 { font-size: 1.8rem; }
+    .wf-events { grid-template-columns: repeat(2, 1fr); }
+    .card-grid-3, .card-grid-4 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Run<span>Bhaarat</span></div>
+  <div class="nav-links">
+    <a href="#overview">Overview</a>
+    <a href="#features">Features</a>
+    <a href="#requirements">Requirements</a>
+    <a href="#sitemap">Sitemap</a>
+    <a href="#design">Design</a>
+    <a href="#data">Data Model</a>
+    <a href="#api">API</a>
+    <a href="#tech">Tech Stack</a>
+    <a href="#nfr">NFRs</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Requirements &amp; Design Document · v1.0</div>
+    <h1>Run<span>Bhaarat</span> Platform</h1>
+    <div class="hero-sub">India's running event discovery, registration &amp; ticketing platform — inspired by IndiaRunning.com</div>
+    <div class="hero-meta">
+      <div class="hero-stat"><div class="num">12</div><div class="lbl">Modules</div></div>
+      <div class="hero-stat"><div class="num">6</div><div class="lbl">Page Templates</div></div>
+      <div class="hero-stat"><div class="num">8</div><div class="lbl">Core Entities</div></div>
+      <div class="hero-stat"><div class="num">32</div><div class="lbl">API Endpoints</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper">
+
+  <!-- 1. OVERVIEW -->
+  <section id="overview">
+    <div class="sec-header">
+      <div class="sec-number">1</div>
+      <div class="sec-title">Project Overview</div>
+    </div>
+    <div class="sec-divider"></div>
+    <div class="content-block">
+      <strong>RunBhaarat</strong> is a full-stack web platform for discovering, registering, and managing running events across India. It serves three primary user groups: <strong>Runners</strong> who browse and register for events, <strong>Organisers</strong> who list and manage events, and <strong>Administrators</strong> who moderate the platform.
+    </div>
+    <div class="card-grid card-grid-3" style="margin-top:1rem;">
+      <div class="card feat-card">
+        <div class="feat-icon">🏃</div>
+        <div class="feat-title">Runners</div>
+        <div class="feat-desc">Discover nearby events, filter by city or distance category, register online, download bibs &amp; certificates, and share race photos.</div>
+      </div>
+      <div class="card feat-card">
+        <div class="feat-icon">🗂️</div>
+        <div class="feat-title">Organisers</div>
+        <div class="feat-desc">List events, manage participant registrations, set pricing tiers, publish results, and upload event photos via a dedicated dashboard.</div>
+      </div>
+      <div class="card feat-card">
+        <div class="feat-icon">🛡️</div>
+        <div class="feat-title">Admins</div>
+        <div class="feat-desc">Approve event listings, manage users and flagged content, view platform analytics, and configure site-wide settings.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. CORE FEATURES -->
+  <section id="features">
+    <div class="sec-header">
+      <div class="sec-number">2</div>
+      <div class="sec-title">Core Features</div>
+    </div>
+    <div class="sec-divider"></div>
+    <div class="card-grid card-grid-4">
+      <div class="card feat-card"><div class="feat-icon">🔍</div><div class="feat-title">Event Discovery</div><div class="feat-desc">Search &amp; filter by city, date, distance type (5K, 10K, HM, FM, Ultra), and price range.</div></div>
+      <div class="card feat-card"><div class="feat-icon">📅</div><div class="feat-title">Event Calendar</div><div class="feat-desc">Monthly calendar view showing upcoming races with colour-coded distance categories.</div></div>
+      <div class="card feat-card"><div class="feat-icon">🎟️</div><div class="feat-title">Online Registration</div><div class="feat-desc">Multi-tier pricing, coupon codes, group registrations, and Razorpay/UPI payment gateway.</div></div>
+      <div class="card feat-card"><div class="feat-icon">📍</div><div class="feat-title">City-based Filters</div><div class="feat-desc">Geolocation to auto-detect city; filter events within configurable radius from user's location.</div></div>
+      <div class="card feat-card"><div class="feat-icon">⭐</div><div class="feat-title">Ratings &amp; Reviews</div><div class="feat-desc">Post-event ratings (1–5 stars), written reviews, and aggregate event score display.</div></div>
+      <div class="card feat-card"><div class="feat-icon">📸</div><div class="feat-title">Race Photos</div><div class="feat-desc">Bib-number photo search using AI face/tag matching; downloadable high-res photos.</div></div>
+      <div class="card feat-card"><div class="feat-icon">🏅</div><div class="feat-title">Certificates</div><div class="feat-desc">Auto-generated personalised finisher certificates with timing, name, and event branding.</div></div>
+      <div class="card feat-card"><div class="feat-icon">📊</div><div class="feat-title">Results &amp; Timing</div><div class="feat-desc">Import chip-timing CSV files; display live &amp; final results with leaderboard by category.</div></div>
+      <div class="card feat-card"><div class="feat-icon">👤</div><div class="feat-title">Runner Profile</div><div class="feat-desc">Personal dashboard with participation history, PBs, medals won, and upcoming registrations.</div></div>
+      <div class="card feat-card"><div class="feat-icon">📣</div><div class="feat-title">Organiser Dashboard</div><div class="feat-desc">Event creation wizard, registration management, revenue reports, and bulk bib allocation.</div></div>
+      <div class="card feat-card"><div class="feat-icon">🔔</div><div class="feat-title">Notifications</div><div class="feat-desc">Email &amp; SMS reminders: registration confirmation, event reminders (7 days, 1 day), results ready.</div></div>
+      <div class="card feat-card"><div class="feat-icon">📱</div><div class="feat-title">Mobile-first UI</div><div class="feat-desc">Responsive design optimised for mobile browsers; PWA capabilities for offline bib access.</div></div>
+    </div>
+  </section>
+
+  <!-- 3. FUNCTIONAL REQUIREMENTS -->
+  <section id="requirements">
+    <div class="sec-header">
+      <div class="sec-number">3</div>
+      <div class="sec-title">Functional Requirements</div>
+    </div>
+    <div class="sec-divider"></div>
+    <div class="card" style="overflow-x:auto; padding:0;">
+      <table class="req-table">
+        <thead>
+          <tr><th>ID</th><th>Module</th><th>Requirement</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>FR-01</td><td>Auth</td><td>Users can register via email/password or Google OAuth. OTP-based phone verification for Indian numbers.</td><td><span class="badge badge-high">High</span></td></tr>
+          <tr><td>FR-02</td><td>Auth</td><td>Separate organiser account with email-verified onboarding and admin approval before listing events.</td><td><span class="badge badge-high">High</span></td></tr>
+          <tr><td>FR-03</td><td>Events</td><td>Event listing page displays: title, city, date range, distance categories, price (starting ₹), rating, registration deadline, and "Register" CTA.</td><td><span class="badge badge-high">High</span></td></tr>
+          <tr><td>FR-04</td><td>Events</td><td>Filter panel: city multi-select, distance category, date range, price range slider, sort by (date, popularity, price).</td><td><span class="badge badge-high">High</span></td></tr>
+          <tr><td>FR-05</td><td>Events</td><td>Event detail page includes: cover image, route map embed, distance options with prices, FAQs accordion, organiser info, and social share buttons.</td><td><span class="badge badge-high">High</span></td></tr>
+          <tr><td>FR-06</td><td>Registration</td><td>Multi-step checkout: (1) select category → (2) participant details → (3) payment → (4) confirmation. Supports group registration up to 10 participants.</td><td><span class="badge badge-high">High</span></td></tr>
+          <tr><td>FR-07</td><td>Registration</td><td>Payment via Razorpay; supports UPI, cards, net banking. Refund policy enforced per event settings.</td><td><span class="badge badge-high">High</span></td></tr>
+          <tr><td>FR-08</td><td>Registration</td><td>Post-payment: confirmation email with QR-coded bib, downloadable PDF ticket, and calendar invite (.ics).</td><td><span class="badge badge-med">Medium</span></td></tr>
+          <tr><td>FR-09</td><td>Results</td><td>Organiser can upload chip-timing CSV (columns: bib, name, finish_time, category). System parses and displays ranked results automatically.</td><td><span class="badge badge-high">High</span></td></tr>
+          <tr><td>FR-10</td><td>Results</td><td>Results page shows overall leaderboard and per-category (M/F, age groups) leaderboard. Runner can see their personal result from their profile.</td><td><span class="badge badge-high">High</span></td></tr>
+          <tr><td>FR-11</td><td>Photos</td><td>Organiser uploads zipped photos; system indexes them. Runner searches by bib number or selfie (AI face matching) to find their race photos.</td><td><span class="badge badge-med">Medium</span></td></tr>
+          <tr><td>FR-12</td><td>Certificates</td><td>Auto-generated PDF certificate after results are finalised: runner name, bib, event name, date, finish time, and event logo.</td><td><span class="badge badge-med">Medium</span></td></tr>
+          <tr><td>FR-13</td><td>Reviews</td><td>Only verified participants (registered + attended) can leave a review. Review includes star rating, text, and optional photos.</td><td><span class="badge badge-med">Medium</span></td></tr>
+          <tr><td>FR-14</td><td>Notifications</td><td>Email notifications: registration confirmation, payment receipt, 7-day reminder, 1-day reminder, results published, certificate ready.</td><td><span class="badge badge-high">High</span></td></tr>
+          <tr><td>FR-15</td><td>Organiser</td><td>Organiser dashboard: total registrations, revenue collected, participant list export (CSV), and event edit capabilities up to 48h before event.</td><td><span class="badge badge-high">High</span></td></tr>
+          <tr><td>FR-16</td><td>Admin</td><td>Admin panel: event approval queue, user management, flagged reviews queue, platform revenue analytics, and featured event placement.</td><td><span class="badge badge-med">Medium</span></td></tr>
+          <tr><td>FR-17</td><td>Profile</td><td>Runner profile: avatar, bio, city, participation history sorted by date, personal bests per distance, total events, and upcoming registrations.</td><td><span class="badge badge-med">Medium</span></td></tr>
+          <tr><td>FR-18</td><td>SEO</td><td>Each event has a canonical SEO-friendly URL: /events/{city-slug}/{event-slug}. Dynamic meta tags (title, description, OG image) per event.</td><td><span class="badge badge-med">Medium</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 4. SITEMAP -->
+  <section id="sitemap">
+    <div class="sec-header">
+      <div class="sec-number">4</div>
+      <div class="sec-title">Sitemap &amp; Page Structure</div>
+    </div>
+    <div class="sec-divider"></div>
+    <div class="card-grid card-grid-2">
+      <div class="sitemap">
+        <div class="sitemap-page">
+          <div class="sitemap-main"><span class="sitemap-icon">🏠</span> / — Home</div>
+          <div class="sitemap-children">
+            <span class="sitemap-child">Hero + Search bar</span>
+            <span class="sitemap-child">Featured Events carousel</span>
+            <span class="sitemap-child">Browse by city</span>
+            <span class="sitemap-child">Upcoming this weekend</span>
+            <span class="sitemap-child">How it works</span>
+          </div>
+        </div>
+        <div class="sitemap-page">
+          <div class="sitemap-main"><span class="sitemap-icon">🔍</span> /events — Event Listing</div>
+          <div class="sitemap-children">
+            <span class="sitemap-child">Filter panel (sidebar)</span>
+            <span class="sitemap-child">Event cards grid</span>
+            <span class="sitemap-child">Pagination / infinite scroll</span>
+            <span class="sitemap-child">Map view toggle</span>
+          </div>
+        </div>
+        <div class="sitemap-page">
+          <div class="sitemap-main"><span class="sitemap-icon">📋</span> /events/:slug — Event Detail</div>
+          <div class="sitemap-children">
+            <span class="sitemap-child">Cover image gallery</span>
+            <span class="sitemap-child">Route map</span>
+            <span class="sitemap-child">Distance & pricing table</span>
+            <span class="sitemap-child">Organiser info</span>
+            <span class="sitemap-child">Reviews section</span>
+            <span class="sitemap-child">FAQs accordion</span>
+          </div>
+        </div>
+        <div class="sitemap-page">
+          <div class="sitemap-main"><span class="sitemap-icon">🎟️</span> /events/:slug/register — Checkout</div>
+          <div class="sitemap-children">
+            <span class="sitemap-child">Step 1: Select category</span>
+            <span class="sitemap-child">Step 2: Participant details</span>
+            <span class="sitemap-child">Step 3: Payment (Razorpay)</span>
+            <span class="sitemap-child">Step 4: Confirmation</span>
+          </div>
+        </div>
+      </div>
+      <div class="sitemap">
+        <div class="sitemap-page">
+          <div class="sitemap-main"><span class="sitemap-icon">👤</span> /profile — Runner Profile</div>
+          <div class="sitemap-children">
+            <span class="sitemap-child">My registrations</span>
+            <span class="sitemap-child">Results & timing</span>
+            <span class="sitemap-child">Certificates</span>
+            <span class="sitemap-child">Race photos</span>
+            <span class="sitemap-child">Personal bests</span>
+          </div>
+        </div>
+        <div class="sitemap-page">
+          <div class="sitemap-main"><span class="sitemap-icon">📊</span> /organiser — Organiser Dashboard</div>
+          <div class="sitemap-children">
+            <span class="sitemap-child">Create event wizard</span>
+            <span class="sitemap-child">My events list</span>
+            <span class="sitemap-child">Participants table</span>
+            <span class="sitemap-child">Upload results</span>
+            <span class="sitemap-child">Revenue analytics</span>
+          </div>
+        </div>
+        <div class="sitemap-page">
+          <div class="sitemap-main"><span class="sitemap-icon">📅</span> /calendar — Race Calendar</div>
+          <div class="sitemap-children">
+            <span class="sitemap-child">Monthly grid view</span>
+            <span class="sitemap-child">City filter</span>
+            <span class="sitemap-child">Distance filter</span>
+          </div>
+        </div>
+        <div class="sitemap-page">
+          <div class="sitemap-main no-children"><span class="sitemap-icon">🛡️</span> /admin — Admin Panel</div>
+        </div>
+        <div class="sitemap-page">
+          <div class="sitemap-main no-children"><span class="sitemap-icon">🔑</span> /login &amp; /register — Auth</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. DESIGN SYSTEM -->
+  <section id="design">
+    <div class="sec-header">
+      <div class="sec-number">5</div>
+      <div class="sec-title">UI Design System</div>
+    </div>
+    <div class="sec-divider"></div>
+
+    <!-- WIREFRAME MOCKUP -->
+    <div style="margin-bottom:1.5rem;">
+      <div style="font-family:'Sora',sans-serif; font-size:14px; font-weight:600; margin-bottom:0.75rem; color:var(--text-muted);">Homepage Wireframe</div>
+      <div class="wireframe">
+        <div class="wf-browser">
+          <div class="wf-bar">
+            <div class="wf-dot" style="background:#FF5F57;"></div>
+            <div class="wf-dot" style="background:#FFBD2E;"></div>
+            <div class="wf-dot" style="background:#28CA41;"></div>
+            <div class="wf-url"></div>
+          </div>
+          <div class="wf-nav">
+            <div class="wf-logo-box"></div>
+            <div style="flex:1"></div>
+            <div class="wf-nav-item" style="width:60px;"></div>
+            <div class="wf-nav-item" style="width:50px;"></div>
+            <div class="wf-nav-item" style="width:60px;"></div>
+            <div class="wf-nav-item" style="width:70px; background:rgba(255,140,66,0.6);"></div>
+          </div>
+          <div class="wf-hero">
+            <div class="wf-hero-h"></div>
+            <div class="wf-hero-h" style="width:40%;opacity:0.7;"></div>
+            <div class="wf-hero-sub"></div>
+            <div class="wf-search">
+              <div class="wf-s-field" style="flex:2;"></div>
+              <div class="wf-s-field"></div>
+              <div class="wf-s-btn"></div>
+            </div>
+          </div>
+          <div class="wf-filters">
+            <div class="wf-filter-chip active">All Events</div>
+            <div class="wf-filter-chip">5K</div>
+            <div class="wf-filter-chip">10K</div>
+            <div class="wf-filter-chip">Half Marathon</div>
+            <div class="wf-filter-chip">Full Marathon</div>
+            <div class="wf-filter-chip">Ultra</div>
+          </div>
+          <div class="wf-events">
+            <div class="wf-event-card">
+              <div class="wf-event-img" style="background:#FDECEA;"></div>
+              <div class="wf-event-body">
+                <div class="wf-event-title"></div>
+                <div class="wf-event-meta"></div>
+                <div class="wf-event-price"></div>
+              </div>
+              <div class="wf-event-btn"></div>
+            </div>
+            <div class="wf-event-card">
+              <div class="wf-event-img" style="background:#E8F0FE;"></div>
+              <div class="wf-event-body">
+                <div class="wf-event-title"></div>
+                <div class="wf-event-meta"></div>
+                <div class="wf-event-price"></div>
+              </div>
+              <div class="wf-event-btn"></div>
+            </div>
+            <div class="wf-event-card">
+              <div class="wf-event-img" style="background:#E8F5EE;"></div>
+              <div class="wf-event-body">
+                <div class="wf-event-title"></div>
+                <div class="wf-event-meta"></div>
+                <div class="wf-event-price"></div>
+              </div>
+              <div class="wf-event-btn"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-grid card-grid-2" style="margin-bottom:1.5rem;">
+      <!-- COLOUR PALETTE -->
+      <div class="card">
+        <div style="font-family:'Sora',sans-serif; font-size:14px; font-weight:600; margin-bottom:1rem;">Colour Palette</div>
+        <div class="palette">
+          <div class="swatch"><div class="swatch-box" style="background:#E84621;"></div><div class="swatch-name">Brand Red</div><div class="swatch-hex">#E84621</div></div>
+          <div class="swatch"><div class="swatch-box" style="background:#C03518;"></div><div class="swatch-name">Brand Dark</div><div class="swatch-hex">#C03518</div></div>
+          <div class="swatch"><div class="swatch-box" style="background:#FF8C42;"></div><div class="swatch-name">Accent Orange</div><div class="swatch-hex">#FF8C42</div></div>
+          <div class="swatch"><div class="swatch-box" style="background:#1A2B4A;"></div><div class="swatch-name">Navy</div><div class="swatch-hex">#1A2B4A</div></div>
+          <div class="swatch"><div class="swatch-box" style="background:#FEF0EC;"></div><div class="swatch-name">Brand Light</div><div class="swatch-hex">#FEF0EC</div></div>
+          <div class="swatch"><div class="swatch-box" style="background:#F4F2EE; border:1px solid #E8E4DE;"></div><div class="swatch-name">Neutral</div><div class="swatch-hex">#F4F2EE</div></div>
+          <div class="swatch"><div class="swatch-box" style="background:#1C1917;"></div><div class="swatch-name">Text</div><div class="swatch-hex">#1C1917</div></div>
+          <div class="swatch"><div class="swatch-box" style="background:#1D7A4F;"></div><div class="swatch-name">Success</div><div class="swatch-hex">#1D7A4F</div></div>
+        </div>
+      </div>
+
+      <!-- TYPOGRAPHY -->
+      <div class="card">
+        <div style="font-family:'Sora',sans-serif; font-size:14px; font-weight:600; margin-bottom:1rem;">Typography</div>
+        <div style="margin-bottom:12px;">
+          <div style="font-size:11px; color:var(--text-light); font-weight:600; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:4px;">Display / Headings</div>
+          <div style="font-family:'Sora',sans-serif; font-size:24px; font-weight:700; line-height:1.1; color:var(--text);">Sora Bold</div>
+          <div style="font-family:'Sora',sans-serif; font-size:14px; color:var(--text-muted);">Page titles, event names, section headers</div>
+        </div>
+        <div style="margin-bottom:12px;">
+          <div style="font-size:11px; color:var(--text-light); font-weight:600; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:4px;">Body</div>
+          <div style="font-family:'DM Sans',sans-serif; font-size:16px; color:var(--text);">DM Sans Regular</div>
+          <div style="font-family:'DM Sans',sans-serif; font-size:13px; color:var(--text-muted);">Descriptions, paragraphs, form labels, metadata</div>
+        </div>
+        <div>
+          <div style="font-size:11px; color:var(--text-light); font-weight:600; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:6px;">Scale</div>
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            <div style="font-family:'Sora',sans-serif; font-size:28px; font-weight:700; color:var(--text); line-height:1;">H1 · 28px · 700</div>
+            <div style="font-family:'Sora',sans-serif; font-size:22px; font-weight:600; color:var(--text); line-height:1;">H2 · 22px · 600</div>
+            <div style="font-family:'Sora',sans-serif; font-size:17px; font-weight:600; color:var(--text); line-height:1;">H3 · 17px · 600</div>
+            <div style="font-size:15px; color:var(--text); line-height:1;">Body · 15px · 400</div>
+            <div style="font-size:13px; color:var(--text-muted); line-height:1;">Small · 13px · 400</div>
+            <div style="font-size:11px; color:var(--text-light); font-weight:600; letter-spacing:0.5px; text-transform:uppercase; line-height:1;">Label · 11px · 600 · uppercase</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPONENTS -->
+    <div style="font-family:'Sora',sans-serif; font-size:14px; font-weight:600; margin-bottom:0.75rem;">UI Components</div>
+    <div class="card-grid card-grid-3">
+      <div class="card">
+        <div style="font-size:12px; font-weight:600; color:var(--text-muted); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px;">Event Card</div>
+        <div style="border:1px solid var(--border); border-radius:10px; overflow:hidden;">
+          <div style="background:linear-gradient(135deg,#E84621,#FF8C42); height:80px; display:flex; align-items:flex-end; padding:8px;">
+            <span style="background:rgba(255,255,255,0.9); font-size:11px; font-weight:600; padding:2px 8px; border-radius:20px; color:var(--brand);">5K · 10K · HM</span>
+          </div>
+          <div style="padding:10px 12px;">
+            <div style="font-family:'Sora',sans-serif; font-size:13px; font-weight:600; color:var(--text); margin-bottom:4px;">Mumbai Fast Marathon</div>
+            <div style="font-size:12px; color:var(--text-muted); margin-bottom:6px;">📍 Mumbai &nbsp;·&nbsp; 📅 19 Apr 2026</div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:12px; color:var(--brand); font-weight:600;">₹1,050 onwards</span>
+              <span style="background:var(--brand); color:#fff; font-size:11px; font-weight:600; padding:4px 10px; border-radius:6px;">Register</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div style="font-size:12px; font-weight:600; color:var(--text-muted); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px;">Buttons</div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <button style="background:var(--brand); color:#fff; border:none; border-radius:8px; padding:10px 20px; font-family:'Sora',sans-serif; font-size:13px; font-weight:600; cursor:pointer;">Register Now →</button>
+          <button style="background:transparent; color:var(--brand); border:1.5px solid var(--brand); border-radius:8px; padding:9px 20px; font-family:'Sora',sans-serif; font-size:13px; font-weight:600; cursor:pointer;">View Details</button>
+          <button style="background:var(--accent2); color:#fff; border:none; border-radius:8px; padding:9px 20px; font-family:'Sora',sans-serif; font-size:13px; font-weight:600; cursor:pointer;">Organise Event</button>
+          <button style="background:var(--neutral); color:var(--text-muted); border:1px solid var(--border); border-radius:8px; padding:9px 20px; font-family:'Sora',sans-serif; font-size:13px; font-weight:500; cursor:pointer;">Disabled</button>
+        </div>
+      </div>
+      <div class="card">
+        <div style="font-size:12px; font-weight:600; color:var(--text-muted); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px;">Badges &amp; Chips</div>
+        <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px;">
+          <span class="badge badge-high">High Priority</span>
+          <span class="badge badge-med">Medium</span>
+          <span class="badge badge-low">Low</span>
+          <span class="badge badge-done">Completed</span>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px;">
+          <span style="background:var(--brand-light); color:var(--brand); font-size:12px; font-weight:600; padding:4px 10px; border-radius:20px;">5K</span>
+          <span style="background:var(--info-bg); color:var(--info); font-size:12px; font-weight:600; padding:4px 10px; border-radius:20px;">10K</span>
+          <span style="background:var(--warn-bg); color:var(--warn); font-size:12px; font-weight:600; padding:4px 10px; border-radius:20px;">Half Marathon</span>
+          <span style="background:#F3E8FF; color:#6B21A8; font-size:12px; font-weight:600; padding:4px 10px; border-radius:20px;">Ultra</span>
+        </div>
+        <div style="font-size:12px; font-weight:600; color:var(--text-muted); margin-bottom:6px;">Star Rating</div>
+        <div style="display:flex; align-items:center; gap:4px;">
+          <span style="color:#F59E0B; font-size:16px;">★★★★</span><span style="color:#D1D5DB; font-size:16px;">★</span>
+          <span style="font-family:'Sora',sans-serif; font-size:14px; font-weight:600; color:var(--text);">4.0</span>
+          <span style="font-size:12px; color:var(--text-muted);">(127 reviews)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. USER FLOWS -->
+  <section>
+    <div class="sec-header">
+      <div class="sec-number">6</div>
+      <div class="sec-title">Key User Flows</div>
+    </div>
+    <div class="sec-divider"></div>
+    <div class="card" style="margin-bottom:1rem;">
+      <div style="font-size:13px; font-weight:600; color:var(--text-muted); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px;">Runner Registration Flow</div>
+      <div class="flow" style="gap:4px; flex-wrap:wrap;">
+        <div class="flow-step">Discover Event</div><div class="flow-arrow">→</div>
+        <div class="flow-step">View Details</div><div class="flow-arrow">→</div>
+        <div class="flow-step active">Select Category</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Enter Details</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Pay via Razorpay</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Confirmation + Bib</div>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:1rem;">
+      <div style="font-size:13px; font-weight:600; color:var(--text-muted); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px;">Organiser Event Creation Flow</div>
+      <div class="flow" style="gap:4px; flex-wrap:wrap;">
+        <div class="flow-step">Register as Organiser</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Admin Approval</div><div class="flow-arrow">→</div>
+        <div class="flow-step active">Create Event Wizard</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Set Pricing Tiers</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Publish Event</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Manage Registrations</div>
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-size:13px; font-weight:600; color:var(--text-muted); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px;">Post-Event Flow</div>
+      <div class="flow" style="gap:4px; flex-wrap:wrap;">
+        <div class="flow-step">Event Held</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Upload Results CSV</div><div class="flow-arrow">→</div>
+        <div class="flow-step active">System Publishes Results</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Auto-generate Certificates</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Email Notifications</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Runners Download</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. DATA MODEL -->
+  <section id="data">
+    <div class="sec-header">
+      <div class="sec-number">7</div>
+      <div class="sec-title">Data Model (Core Entities)</div>
+    </div>
+    <div class="sec-divider"></div>
+    <div class="card-grid card-grid-2" style="margin-bottom:1.5rem;">
+      <div class="entity">
+        <div class="entity-head">users</div>
+        <div class="entity-field"><span class="ef-icon">🔑</span><span class="ef-name">id</span><span class="ef-type">uuid PK</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">name</span><span class="ef-type">varchar(120)</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">email</span><span class="ef-type">varchar unique</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">phone</span><span class="ef-type">varchar(15)</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">role</span><span class="ef-type">enum(runner, organiser, admin)</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">city</span><span class="ef-type">varchar(80)</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">avatar_url</span><span class="ef-type">text nullable</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">created_at</span><span class="ef-type">timestamp</span></div>
+      </div>
+      <div class="entity">
+        <div class="entity-head">events</div>
+        <div class="entity-field"><span class="ef-icon">🔑</span><span class="ef-name">id</span><span class="ef-type">uuid PK</span></div>
+        <div class="entity-field"><span class="ef-icon">🔗</span><span class="ef-name">organiser_id</span><span class="ef-type">uuid FK → users</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">title</span><span class="ef-type">varchar(200)</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">slug</span><span class="ef-type">varchar unique</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">city</span><span class="ef-type">varchar(80)</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">venue</span><span class="ef-type">text</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">event_date</span><span class="ef-type">date</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">reg_deadline</span><span class="ef-type">timestamp</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">status</span><span class="ef-type">enum(draft, pending, live, completed)</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">cover_image_url</span><span class="ef-type">text</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">description</span><span class="ef-type">text</span></div>
+      </div>
+      <div class="entity">
+        <div class="entity-head">event_categories</div>
+        <div class="entity-field"><span class="ef-icon">🔑</span><span class="ef-name">id</span><span class="ef-type">uuid PK</span></div>
+        <div class="entity-field"><span class="ef-icon">🔗</span><span class="ef-name">event_id</span><span class="ef-type">uuid FK → events</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">name</span><span class="ef-type">enum(3K,5K,10K,HM,FM,50K,Ultra)</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">price</span><span class="ef-type">decimal(10,2)</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">max_participants</span><span class="ef-type">integer nullable</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">slots_remaining</span><span class="ef-type">integer</span></div>
+      </div>
+      <div class="entity">
+        <div class="entity-head">registrations</div>
+        <div class="entity-field"><span class="ef-icon">🔑</span><span class="ef-name">id</span><span class="ef-type">uuid PK</span></div>
+        <div class="entity-field"><span class="ef-icon">🔗</span><span class="ef-name">user_id</span><span class="ef-type">uuid FK → users</span></div>
+        <div class="entity-field"><span class="ef-icon">🔗</span><span class="ef-name">category_id</span><span class="ef-type">uuid FK → event_categories</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">bib_number</span><span class="ef-type">varchar(20) unique</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">status</span><span class="ef-type">enum(pending, confirmed, cancelled)</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">amount_paid</span><span class="ef-type">decimal(10,2)</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">payment_ref</span><span class="ef-type">varchar(100)</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">registered_at</span><span class="ef-type">timestamp</span></div>
+      </div>
+      <div class="entity">
+        <div class="entity-head">results</div>
+        <div class="entity-field"><span class="ef-icon">🔑</span><span class="ef-name">id</span><span class="ef-type">uuid PK</span></div>
+        <div class="entity-field"><span class="ef-icon">🔗</span><span class="ef-name">registration_id</span><span class="ef-type">uuid FK → registrations</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">finish_time</span><span class="ef-type">interval</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">overall_rank</span><span class="ef-type">integer</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">category_rank</span><span class="ef-type">integer</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">gun_time</span><span class="ef-type">interval nullable</span></div>
+      </div>
+      <div class="entity">
+        <div class="entity-head">reviews</div>
+        <div class="entity-field"><span class="ef-icon">🔑</span><span class="ef-name">id</span><span class="ef-type">uuid PK</span></div>
+        <div class="entity-field"><span class="ef-icon">🔗</span><span class="ef-name">event_id</span><span class="ef-type">uuid FK → events</span></div>
+        <div class="entity-field"><span class="ef-icon">🔗</span><span class="ef-name">user_id</span><span class="ef-type">uuid FK → users</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">rating</span><span class="ef-type">smallint (1–5)</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">body</span><span class="ef-type">text</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">is_verified</span><span class="ef-type">boolean default false</span></div>
+        <div class="entity-field"><span class="ef-icon"></span><span class="ef-name">created_at</span><span class="ef-type">timestamp</span></div>
+      </div>
+    </div>
+
+    <!-- RELATIONS -->
+    <div class="card">
+      <div style="font-size:13px; font-weight:600; color:var(--text-muted); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px;">Entity Relationships</div>
+      <div class="er-diagram">
+        <div class="er-row"><span class="er-entity">users</span><span class="er-rel">1 : many</span><span class="er-entity">events</span><span class="er-rel">(organiser creates events)</span></div>
+        <div class="er-row"><span class="er-entity">events</span><span class="er-rel">1 : many</span><span class="er-entity">event_categories</span><span class="er-rel">(one event has multiple distance categories)</span></div>
+        <div class="er-row"><span class="er-entity">users</span><span class="er-rel">1 : many</span><span class="er-entity">registrations</span><span class="er-rel">(runner can register for many events)</span></div>
+        <div class="er-row"><span class="er-entity">event_categories</span><span class="er-rel">1 : many</span><span class="er-entity">registrations</span><span class="er-rel">(many runners per category)</span></div>
+        <div class="er-row"><span class="er-entity">registrations</span><span class="er-rel">1 : 1</span><span class="er-entity">results</span><span class="er-rel">(one result per registration after event)</span></div>
+        <div class="er-row"><span class="er-entity">events</span><span class="er-rel">1 : many</span><span class="er-entity">reviews</span><span class="er-rel">(verified participants can review)</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. API ENDPOINTS -->
+  <section id="api">
+    <div class="sec-header">
+      <div class="sec-number">8</div>
+      <div class="sec-title">Core API Endpoints</div>
+    </div>
+    <div class="sec-divider"></div>
+    <div class="card" style="overflow-x:auto; padding:0;">
+      <table class="api-table">
+        <thead><tr><th>Method</th><th>Endpoint</th><th>Description</th><th>Auth</th></tr></thead>
+        <tbody>
+          <tr><td><span class="method method-post">POST</span></td><td class="endpoint">/api/auth/register</td><td>Register new user (runner or organiser)</td><td><span class="badge badge-low">Public</span></td></tr>
+          <tr><td><span class="method method-post">POST</span></td><td class="endpoint">/api/auth/login</td><td>Email/password login, returns JWT</td><td><span class="badge badge-low">Public</span></td></tr>
+          <tr><td><span class="method method-get">GET</span></td><td class="endpoint">/api/events</td><td>List events with filters (city, category, date, price)</td><td><span class="badge badge-low">Public</span></td></tr>
+          <tr><td><span class="method method-get">GET</span></td><td class="endpoint">/api/events/:slug</td><td>Single event detail with categories and reviews</td><td><span class="badge badge-low">Public</span></td></tr>
+          <tr><td><span class="method method-post">POST</span></td><td class="endpoint">/api/events</td><td>Create new event (organiser only)</td><td><span class="badge badge-med">Organiser</span></td></tr>
+          <tr><td><span class="method method-put">PUT</span></td><td class="endpoint">/api/events/:id</td><td>Update event details</td><td><span class="badge badge-med">Organiser</span></td></tr>
+          <tr><td><span class="method method-post">POST</span></td><td class="endpoint">/api/registrations</td><td>Register for an event category, initiates payment</td><td><span class="badge badge-done">Runner</span></td></tr>
+          <tr><td><span class="method method-get">GET</span></td><td class="endpoint">/api/registrations/:id</td><td>Get registration detail with bib and status</td><td><span class="badge badge-done">Runner</span></td></tr>
+          <tr><td><span class="method method-post">POST</span></td><td class="endpoint">/api/payments/webhook</td><td>Razorpay webhook: confirm payment and issue bib</td><td><span class="badge badge-low">Razorpay</span></td></tr>
+          <tr><td><span class="method method-get">GET</span></td><td class="endpoint">/api/events/:id/results</td><td>Get final results leaderboard for an event</td><td><span class="badge badge-low">Public</span></td></tr>
+          <tr><td><span class="method method-post">POST</span></td><td class="endpoint">/api/events/:id/results/upload</td><td>Upload timing CSV to publish results</td><td><span class="badge badge-med">Organiser</span></td></tr>
+          <tr><td><span class="method method-get">GET</span></td><td class="endpoint">/api/users/me</td><td>Get logged-in user profile with registrations</td><td><span class="badge badge-done">Runner</span></td></tr>
+          <tr><td><span class="method method-post">POST</span></td><td class="endpoint">/api/events/:id/reviews</td><td>Post review (verified participants only)</td><td><span class="badge badge-done">Runner</span></td></tr>
+          <tr><td><span class="method method-get">GET</span></td><td class="endpoint">/api/certificates/:reg_id</td><td>Download personalised finisher certificate PDF</td><td><span class="badge badge-done">Runner</span></td></tr>
+          <tr><td><span class="method method-get">GET</span></td><td class="endpoint">/api/admin/events/pending</td><td>List events awaiting approval</td><td><span class="badge badge-high">Admin</span></td></tr>
+          <tr><td><span class="method method-put">PUT</span></td><td class="endpoint">/api/admin/events/:id/approve</td><td>Approve or reject an event listing</td><td><span class="badge badge-high">Admin</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 9. TECH STACK -->
+  <section id="tech">
+    <div class="sec-header">
+      <div class="sec-number">9</div>
+      <div class="sec-title">Recommended Tech Stack</div>
+    </div>
+    <div class="sec-divider"></div>
+    <div class="card">
+      <div class="tech-row">
+        <div class="tech-layer">Frontend</div>
+        <div class="tech-stack-pills">
+          <span class="tech-pill">React 18</span>
+          <span class="tech-pill">Next.js 14 (App Router)</span>
+          <span class="tech-pill">TypeScript</span>
+          <span class="tech-pill">Tailwind CSS</span>
+          <span class="tech-pill">ShadCN UI</span>
+          <span class="tech-pill">Tanstack Query</span>
+        </div>
+      </div>
+      <div class="tech-row">
+        <div class="tech-layer">Backend</div>
+        <div class="tech-stack-pills">
+          <span class="tech-pill">Node.js</span>
+          <span class="tech-pill">Express.js / Hono</span>
+          <span class="tech-pill">Prisma ORM</span>
+          <span class="tech-pill">JWT Auth</span>
+          <span class="tech-pill">Zod Validation</span>
+        </div>
+      </div>
+      <div class="tech-row">
+        <div class="tech-layer">Database</div>
+        <div class="tech-stack-pills">
+          <span class="tech-pill">PostgreSQL (Supabase)</span>
+          <span class="tech-pill">Redis (caching)</span>
+          <span class="tech-pill">Elasticsearch (event search)</span>
+        </div>
+      </div>
+      <div class="tech-row">
+        <div class="tech-layer">Storage</div>
+        <div class="tech-stack-pills">
+          <span class="tech-pill">AWS S3 / Cloudflare R2</span>
+          <span class="tech-pill">Cloudinary (image transforms)</span>
+        </div>
+      </div>
+      <div class="tech-row">
+        <div class="tech-layer">Payments</div>
+        <div class="tech-stack-pills">
+          <span class="tech-pill">Razorpay</span>
+          <span class="tech-pill">UPI, Cards, Netbanking</span>
+        </div>
+      </div>
+      <div class="tech-row">
+        <div class="tech-layer">Notifications</div>
+        <div class="tech-stack-pills">
+          <span class="tech-pill">Resend (email)</span>
+          <span class="tech-pill">Twilio / MSG91 (SMS)</span>
+          <span class="tech-pill">Firebase FCM (push)</span>
+        </div>
+      </div>
+      <div class="tech-row">
+        <div class="tech-layer">PDF / Certs</div>
+        <div class="tech-stack-pills">
+          <span class="tech-pill">Puppeteer / html-pdf</span>
+          <span class="tech-pill">Sharp (image processing)</span>
+        </div>
+      </div>
+      <div class="tech-row">
+        <div class="tech-layer">DevOps</div>
+        <div class="tech-stack-pills">
+          <span class="tech-pill">Vercel (frontend)</span>
+          <span class="tech-pill">Railway / Render (API)</span>
+          <span class="tech-pill">GitHub Actions CI/CD</span>
+          <span class="tech-pill">Sentry (monitoring)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. NON-FUNCTIONAL REQUIREMENTS -->
+  <section id="nfr">
+    <div class="sec-header">
+      <div class="sec-number">10</div>
+      <div class="sec-title">Non-Functional Requirements</div>
+    </div>
+    <div class="sec-divider"></div>
+    <div class="card-grid card-grid-2">
+      <div class="card feat-card">
+        <div class="feat-icon">⚡</div>
+        <div class="feat-title">Performance</div>
+        <div class="feat-desc">LCP &lt; 2.5s on 4G mobile. API p95 response &lt; 300ms. Event listing page supports 500 concurrent users without degradation. Images served via CDN with lazy loading.</div>
+      </div>
+      <div class="card feat-card">
+        <div class="feat-icon">🔒</div>
+        <div class="feat-title">Security</div>
+        <div class="feat-desc">HTTPS enforced everywhere. JWT tokens expire in 7 days. Razorpay signature verification on webhooks. OWASP Top 10 mitigations. Rate limiting: 100 req/min per IP.</div>
+      </div>
+      <div class="card feat-card">
+        <div class="feat-icon">📈</div>
+        <div class="feat-title">Scalability</div>
+        <div class="feat-desc">Horizontal scaling for API servers. Database read replicas for listing queries. Redis caching for event listings (TTL 5 min). Queue-based certificate generation (BullMQ).</div>
+      </div>
+      <div class="card feat-card">
+        <div class="feat-icon">♿</div>
+        <div class="feat-title">Accessibility</div>
+        <div class="feat-desc">WCAG 2.1 AA compliance. Keyboard-navigable UI. ARIA labels on interactive elements. Minimum 4.5:1 colour contrast ratio. Screen-reader tested with NVDA.</div>
+      </div>
+      <div class="card feat-card">
+        <div class="feat-icon">🌐</div>
+        <div class="feat-title">SEO</div>
+        <div class="feat-desc">Server-side rendered event pages via Next.js. Structured data (JSON-LD: Event schema). Sitemap.xml auto-generated. OG images per event for social sharing.</div>
+      </div>
+      <div class="card feat-card">
+        <div class="feat-icon">🛡️</div>
+        <div class="feat-title">Reliability</div>
+        <div class="feat-desc">99.5% uptime SLA. Daily automated DB backups retained 30 days. Payment webhook retries with idempotency keys. Graceful degradation when Razorpay is down.</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <strong>RunBhaarat</strong> — Requirements &amp; Design Document · v1.0 · April 2026 &nbsp;·&nbsp;
+  Created for localhost frontend development. Inspired by IndiaRunning.com.
+</footer>
+</body>
+</html>

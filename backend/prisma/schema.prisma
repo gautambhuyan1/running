@@ -1,0 +1,157 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String   @id @default(uuid())
+  name       String
+  email      String   @unique
+  password   String?
+  phone      String?
+  role       String   @default("runner") // runner | organiser | admin
+  city       String?
+  bio        String?
+  avatarUrl  String?
+  isVerified Boolean  @default(false)
+  googleId   String?  @unique
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  events        Event[]
+  registrations Registration[]
+  reviews       Review[]
+  notifications Notification[]
+
+  @@map("users")
+}
+
+model Event {
+  id            String   @id @default(uuid())
+  organiserId   String
+  title         String
+  slug          String   @unique
+  city          String
+  venue         String
+  eventDate     DateTime
+  regDeadline   DateTime
+  status        String   @default("draft") // draft | pending | live | completed
+  coverImageUrl String?
+  description   String
+  routeMapUrl   String?
+  isFeatured    Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  organiser  User              @relation(fields: [organiserId], references: [id])
+  categories EventCategory[]
+  reviews    Review[]
+  photos     Photo[]
+  faqs       EventFaq[]
+
+  @@map("events")
+}
+
+model EventCategory {
+  id              String  @id @default(uuid())
+  eventId         String
+  name            String  // 3K | 5K | 10K | HM | FM | 50K | Ultra
+  price           Float
+  maxParticipants Int?
+  slotsRemaining  Int
+
+  event         Event          @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  registrations Registration[]
+
+  @@map("event_categories")
+}
+
+model Registration {
+  id          String   @id @default(uuid())
+  userId      String
+  categoryId  String
+  bibNumber   String?  @unique
+  status      String   @default("pending") // pending | confirmed | cancelled
+  amountPaid  Float
+  paymentRef  String?
+  registeredAt DateTime @default(now())
+
+  user     User          @relation(fields: [userId], references: [id])
+  category EventCategory @relation(fields: [categoryId], references: [id])
+  result   Result?
+
+  @@map("registrations")
+}
+
+model Result {
+  id             String  @id @default(uuid())
+  registrationId String  @unique
+  finishTime     String  // stored as HH:MM:SS
+  gunTime        String? // stored as HH:MM:SS
+  overallRank    Int
+  categoryRank   Int
+
+  registration Registration @relation(fields: [registrationId], references: [id])
+
+  @@map("results")
+}
+
+model Review {
+  id         String   @id @default(uuid())
+  eventId    String
+  userId     String
+  rating     Int      // 1-5
+  body       String
+  isVerified Boolean  @default(false)
+  isFlagged  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  event Event @relation(fields: [eventId], references: [id])
+  user  User  @relation(fields: [userId], references: [id])
+
+  @@map("reviews")
+}
+
+model Photo {
+  id        String   @id @default(uuid())
+  eventId   String
+  url       String
+  bibTag    String?  // bib number tag for search
+  caption   String?
+  createdAt DateTime @default(now())
+
+  event Event @relation(fields: [eventId], references: [id])
+
+  @@map("photos")
+}
+
+model EventFaq {
+  id       String @id @default(uuid())
+  eventId  String
+  question String
+  answer   String
+  sortOrder Int   @default(0)
+
+  event Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@map("event_faqs")
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  type      String   // registration_confirmation | payment_receipt | event_reminder_7d | event_reminder_1d | results_published | certificate_ready
+  title     String
+  body      String
+  isRead    Boolean  @default(false)
+  metadata  String?  // JSON string for extra data
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("notifications")
+}
