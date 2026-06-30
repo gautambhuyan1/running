@@ -232,7 +232,6 @@ router.get("/:slug", optionalAuth, async (req, res) => {
       ...event,
       avgRating: Math.round(avgRating * 10) / 10,
       reviewCount: event.reviews.length,
-      reviewCount: event.reviews.length,
       photoCount: event._count.photos,
     });
   } catch (error) {

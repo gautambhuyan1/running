@@ -10,15 +10,17 @@ router.get("/events", authenticate, requireRole("organiser", "admin"), async (re
     const events = await prisma.event.findMany({
       where: { organiserId: req.user!.userId },
       include: {
-        categories: true,
-        _count: { select: { registrations: true, reviews: true } },
+        categories: {
+          include: { _count: { select: { registrations: true } } },
+        },
+        _count: { select: { reviews: true } },
       },
       orderBy: { eventDate: "desc" },
     });
 
     const eventsWithStats = events.map((e) => ({
       ...e,
-      registrationCount: e._count.registrations,
+      registrationCount: e.categories.reduce((sum, c) => sum + c._count.registrations, 0),
       reviewCount: e._count.reviews,
     }));
 
