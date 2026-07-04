@@ -29,6 +29,7 @@ export function Navbar() {
   const navLinks = [
     { href: "/events", label: "Events" },
     { href: "/calendar", label: "Calendar" },
+    { href: "/fundraising", label: "Fund Raising" },
   ];
 
   return (

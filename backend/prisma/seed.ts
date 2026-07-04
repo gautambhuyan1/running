@@ -5,6 +5,10 @@ const prisma = new PrismaClient();
 
 async function main() {
   // Clean existing data
+  await prisma.donation.deleteMany();
+  await prisma.fundraiser.deleteMany();
+  await prisma.fundraisingCampaign.deleteMany();
+  await prisma.ngo.deleteMany();
   await prisma.notification.deleteMany();
   await prisma.photo.deleteMany();
   await prisma.result.deleteMany();
@@ -433,6 +437,59 @@ async function main() {
     ],
   });
 
+  // --- NGOs ---
+  const ngo1 = await prisma.ngo.create({ data: { name: "Teach For India", description: "Bridging the education gap for underprivileged children across India.", website: "https://teachforindia.org", logoUrl: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=100" } });
+  const ngo2 = await prisma.ngo.create({ data: { name: "Goonj", description: "Channelling urban surplus to rural India — clothing, disaster relief, and development.", website: "https://goonj.org", logoUrl: "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=100" } });
+  const ngo3 = await prisma.ngo.create({ data: { name: "CRY – Child Rights and You", description: "Working to ensure sustainable change for underprivileged children in India.", website: "https://cry.org", logoUrl: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=100" } });
+  const ngo4 = await prisma.ngo.create({ data: { name: "Akshaya Patra", description: "Mid-day meal programme reaching millions of school children daily.", website: "https://akshayapatra.org", logoUrl: "https://images.unsplash.com/photo-1547592180-85f173990554?w=100" } });
+  const ngo5 = await prisma.ngo.create({ data: { name: "HelpAge India", description: "Championing the cause of disadvantaged elderly people in India.", website: "https://helpageindia.org", logoUrl: "https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?w=100" } });
+
+  // --- Fundraising campaign for Mumbai Marathon ---
+  const campaign1 = await prisma.fundraisingCampaign.create({
+    data: {
+      eventId: event1.id,
+      goalAmount: 500000,
+      isActive: true,
+      description: "Run for a cause! Every kilometre you clock at Mumbai Marathon 2026 can change a life. Support our NGO partners working on education, nutrition, and elder care.",
+    },
+  });
+
+  // --- Sample fundraiser by runner1 ---
+  const fundraiser1 = await prisma.fundraiser.create({
+    data: {
+      userId: runner1.id,
+      campaignId: campaign1.id,
+      ngoId: ngo1.id,
+      title: "Running 21km for Teach For India",
+      story: "I'm running the Mumbai Half Marathon to raise funds for Teach For India — a movement that places talented graduates in under-resourced schools. Every rupee you donate will help train a teacher who will impact 35+ children every year. Join me on this journey!",
+      goalAmount: 25000,
+      isPublished: true,
+    },
+  });
+
+  const fundraiser2 = await prisma.fundraiser.create({
+    data: {
+      userId: runner2.id,
+      campaignId: campaign1.id,
+      ngoId: ngo4.id,
+      title: "Running for Mid-Day Meals – Akshaya Patra",
+      story: "No child should go hungry. I'm running the Mumbai Marathon to support Akshaya Patra's mid-day meal programme. ₹1250 feeds one child for an entire year. Every donation counts!",
+      goalAmount: 50000,
+      isPublished: true,
+    },
+  });
+
+  // --- Sample donations ---
+  await prisma.donation.createMany({
+    data: [
+      { fundraiserId: fundraiser1.id, donorName: "Vikram Singh", donorEmail: "vikram@gmail.com", amount: 2000, message: "Go Ananya! Great cause!", status: "confirmed", paymentRef: "pay_fund_001" },
+      { fundraiserId: fundraiser1.id, donorName: "Anonymous", donorEmail: "anon@gmail.com", amount: 1500, status: "confirmed", paymentRef: "pay_fund_002", isAnonymous: true },
+      { fundraiserId: fundraiser1.id, donorName: "Meera Joshi", donorEmail: "meera@gmail.com", amount: 3000, message: "Proud of you!", status: "confirmed", paymentRef: "pay_fund_003" },
+      { fundraiserId: fundraiser2.id, donorName: "Ananya Patel", donorEmail: "ananya@gmail.com", amount: 5000, message: "Such an important cause!", status: "confirmed", paymentRef: "pay_fund_004" },
+      { fundraiserId: fundraiser2.id, donorName: "Arjun Nair", donorEmail: "arjun@gmail.com", amount: 2500, status: "confirmed", paymentRef: "pay_fund_005" },
+    ],
+  });
+
   console.log("Seed data created successfully!");
   console.log(`  Users: 7 (1 admin, 2 organisers, 4 runners)`);
   console.log(`  Events: 6 (5 live, 1 completed)`);
@@ -443,6 +500,10 @@ async function main() {
   console.log(`  FAQs: 7`);
   console.log(`  Photos: 3`);
   console.log(`  Notifications: 4`);
+  console.log(`  NGOs: 5`);
+  console.log(`  Fundraising campaigns: 1`);
+  console.log(`  Fundraisers: 2`);
+  console.log(`  Donations: 5`);
   console.log(`\nDefault password for all users: password123`);
 }
 

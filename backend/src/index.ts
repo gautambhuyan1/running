@@ -13,6 +13,7 @@ import notificationRoutes from "./routes/notifications";
 import organiserRoutes from "./routes/organiser";
 import adminRoutes from "./routes/admin";
 import profileRoutes from "./routes/profile";
+import fundraisingRoutes from "./routes/fundraising";
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use("/api/notifications", notificationRoutes);
 app.use("/api/organiser", organiserRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/users", profileRoutes);
+app.use("/api", fundraisingRoutes);
 
 // Health check
 app.get("/api/health", (_req, res) => {

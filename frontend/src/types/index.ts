@@ -95,6 +95,57 @@ export interface Notification {
   createdAt: string;
 }
 
+export interface Ngo {
+  id: string;
+  name: string;
+  description: string;
+  logoUrl?: string;
+  website?: string;
+}
+
+export interface FundraisingCampaign {
+  id: string;
+  eventId: string;
+  goalAmount: number;
+  totalRaised: number;
+  isActive: boolean;
+  description?: string;
+  createdAt: string;
+  event: Pick<Event, "id" | "title" | "slug" | "city" | "eventDate" | "coverImageUrl" | "status">;
+  _count: { fundraisers: number };
+}
+
+export type FundraiserBadge = "Champion" | "Trailblazer" | "Change Maker" | "Rising Star" | "Starter";
+
+export interface Fundraiser {
+  id: string;
+  userId: string;
+  campaignId: string;
+  ngoId: string;
+  title: string;
+  story: string;
+  goalAmount: number;
+  totalRaised: number;
+  imageUrl?: string;
+  badge: FundraiserBadge;
+  isPublished: boolean;
+  createdAt: string;
+  user: Pick<User, "id" | "name" | "avatarUrl" | "city">;
+  ngo: Ngo;
+  campaign?: FundraisingCampaign;
+  donations?: Donation[];
+  _count?: { donations: number };
+}
+
+export interface Donation {
+  id: string;
+  donorName: string;
+  amount: number;
+  message?: string;
+  isAnonymous: boolean;
+  createdAt: string;
+}
+
 export interface AuthResponse {
   user: User;
   token: string;

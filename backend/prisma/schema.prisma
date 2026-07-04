@@ -26,6 +26,7 @@ model User {
   registrations Registration[]
   reviews       Review[]
   notifications Notification[]
+  fundraisers   Fundraiser[]
 
   @@map("users")
 }
@@ -47,11 +48,12 @@ model Event {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
-  organiser  User              @relation(fields: [organiserId], references: [id])
+  organiser  User                 @relation(fields: [organiserId], references: [id])
   categories EventCategory[]
   reviews    Review[]
   photos     Photo[]
   faqs       EventFaq[]
+  campaign   FundraisingCampaign?
 
   @@map("events")
 }
@@ -139,6 +141,75 @@ model EventFaq {
   event Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
 
   @@map("event_faqs")
+}
+
+model Ngo {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  logoUrl     String?
+  website     String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+
+  fundraisers Fundraiser[]
+
+  @@map("ngos")
+}
+
+model FundraisingCampaign {
+  id          String   @id @default(uuid())
+  eventId     String   @unique
+  goalAmount  Float
+  isActive    Boolean  @default(true)
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  event       Event        @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  fundraisers Fundraiser[]
+
+  @@map("fundraising_campaigns")
+}
+
+model Fundraiser {
+  id          String   @id @default(uuid())
+  userId      String
+  campaignId  String
+  ngoId       String
+  title       String
+  story       String
+  goalAmount  Float
+  imageUrl    String?
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user      User                @relation(fields: [userId], references: [id])
+  campaign  FundraisingCampaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  ngo       Ngo                 @relation(fields: [ngoId], references: [id])
+  donations Donation[]
+
+  @@unique([userId, campaignId])
+  @@map("fundraisers")
+}
+
+model Donation {
+  id           String   @id @default(uuid())
+  fundraiserId String
+  donorName    String
+  donorEmail   String
+  amount       Float
+  message      String?
+  orderId      String?
+  paymentRef   String?
+  status       String   @default("pending") // pending | confirmed | failed
+  isAnonymous  Boolean  @default(false)
+  createdAt    DateTime @default(now())
+
+  fundraiser Fundraiser @relation(fields: [fundraiserId], references: [id], onDelete: Cascade)
+
+  @@map("donations")
 }
 
 model Notification {

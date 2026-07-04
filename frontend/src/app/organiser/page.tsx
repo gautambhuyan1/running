@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { api } from "@/lib/api";
 import { useAuth } from "@/lib/auth-context";
-import { Calendar, Users, IndianRupee, TrendingUp, Plus, Eye } from "lucide-react";
+import { Calendar, Users, IndianRupee, TrendingUp, Plus, Eye, Heart } from "lucide-react";
 import { format } from "date-fns";
 
 export default function OrganiserDashboardPage() {
@@ -17,12 +17,24 @@ export default function OrganiserDashboardPage() {
   const router = useRouter();
   const [dashboard, setDashboard] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [campaigns, setCampaigns] = useState<Record<string, any>>({});
+  const [campaignForm, setCampaignForm] = useState<Record<string, { goalAmount: string; description: string }>>({});
+  const [campaignSaving, setCampaignSaving] = useState<string | null>(null);
 
   useEffect(() => {
     if (!user || (user.role !== "organiser" && user.role !== "admin")) {
       router.push("/"); return;
     }
-    api.getOrganiserDashboard().then(setDashboard).catch(() => {}).finally(() => setLoading(false));
+    api.getOrganiserDashboard().then(async (d) => {
+      setDashboard(d);
+      const campaignMap: Record<string, any> = {};
+      await Promise.allSettled(
+        (d.events ?? []).map(async (ev: any) => {
+          try { campaignMap[ev.id] = await api.getEventCampaign(ev.id); } catch { campaignMap[ev.id] = null; }
+        })
+      );
+      setCampaigns(campaignMap);
+    }).catch(() => {}).finally(() => setLoading(false));
   }, [user, router]);
 
   if (loading || !dashboard) {
@@ -90,6 +102,55 @@ export default function OrganiserDashboardPage() {
                 </Link>
               </div>
             </div>
+
+            {/* Fundraising toggle */}
+            {event.status === "live" && (
+              <div className="mt-3 pt-3 border-t border-[#F4F2EE]">
+                {campaigns[event.id] ? (
+                  <div className="flex items-center justify-between">
+                    <div className="text-xs text-[#6B6560] flex items-center gap-2">
+                      <Heart className="w-3.5 h-3.5 text-[#E84621]" />
+                      <span>Fundraising active · Goal: ₹{campaigns[event.id].goalAmount.toLocaleString()} · Raised: ₹{(campaigns[event.id].totalRaised ?? 0).toLocaleString()}</span>
+                    </div>
+                    <Link href={`/fundraising/${event.slug}`}>
+                      <Button size="sm" variant="outline" className="text-xs gap-1 h-7">
+                        <Eye className="w-3 h-3" /> View Campaign
+                      </Button>
+                    </Link>
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    <p className="text-xs text-[#6B6560] flex items-center gap-1"><Heart className="w-3.5 h-3.5" /> Enable fundraising for this event</p>
+                    <div className="flex gap-2 flex-wrap">
+                      <input
+                        type="number"
+                        min={1000}
+                        placeholder="Campaign goal (₹)"
+                        className="text-xs border border-[#E8E4DE] rounded-md px-2 py-1 w-40 outline-none focus:border-[#E84621]"
+                        value={campaignForm[event.id]?.goalAmount ?? ""}
+                        onChange={(e) => setCampaignForm((f) => ({ ...f, [event.id]: { ...f[event.id], goalAmount: e.target.value } }))}
+                      />
+                      <Button
+                        size="sm"
+                        className="bg-[#E84621] text-white text-xs h-7 gap-1"
+                        disabled={campaignSaving === event.id}
+                        onClick={async () => {
+                          const goal = parseFloat(campaignForm[event.id]?.goalAmount ?? "0");
+                          if (!goal || goal < 1000) return;
+                          setCampaignSaving(event.id);
+                          try {
+                            const c = await api.createCampaign(event.id, { goalAmount: goal, description: campaignForm[event.id]?.description });
+                            setCampaigns((prev) => ({ ...prev, [event.id]: c }));
+                          } catch { /* ignore */ } finally { setCampaignSaving(null); }
+                        }}
+                      >
+                        <Heart className="w-3 h-3" /> {campaignSaving === event.id ? "Saving…" : "Enable Fundraising"}
+                      </Button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </Card>
         ))}
       </div>

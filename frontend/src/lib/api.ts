@@ -214,6 +214,59 @@ class ApiClient {
   async adminDeleteEvent(id: string) {
     return this.request<any>(`/admin/events/${id}`, { method: "DELETE" });
   }
+
+  // Fundraising
+  async getNgos() {
+    return this.request<any[]>("/ngos");
+  }
+
+  async getEventCampaign(eventId: string) {
+    return this.request<any>(`/events/${eventId}/campaign`);
+  }
+
+  async createCampaign(eventId: string, data: { goalAmount: number; description?: string }) {
+    return this.request<any>(`/events/${eventId}/campaign`, {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+  }
+
+  async getEventFundraisers(eventId: string) {
+    return this.request<any[]>(`/events/${eventId}/fundraisers`);
+  }
+
+  async getEventLeaderboard(eventId: string) {
+    return this.request<any[]>(`/events/${eventId}/leaderboard`);
+  }
+
+  async createFundraiser(eventId: string, data: { ngoId: string; title: string; story: string; goalAmount: number; imageUrl?: string }) {
+    return this.request<any>(`/events/${eventId}/fundraisers`, {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+  }
+
+  async getFundraiser(id: string) {
+    return this.request<any>(`/fundraisers/${id}`);
+  }
+
+  async createDonationOrder(fundraiserId: string, data: { amount: number; donorName: string; donorEmail: string; message?: string; isAnonymous?: boolean }) {
+    return this.request<any>(`/fundraisers/${fundraiserId}/donate`, {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+  }
+
+  async verifyDonation(fundraiserId: string, data: any) {
+    return this.request<any>(`/fundraisers/${fundraiserId}/donate/verify`, {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+  }
+
+  async getFundraisingEvents() {
+    return this.request<any[]>("/events?status=live&limit=50");
+  }
 }
 
 export const api = new ApiClient();
