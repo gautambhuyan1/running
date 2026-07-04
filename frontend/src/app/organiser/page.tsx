@@ -55,9 +55,11 @@ export default function OrganiserDashboardPage() {
           <h1 className="font-[family-name:var(--font-sora)] text-2xl font-bold">Organiser Dashboard</h1>
           <p className="text-sm text-[#6B6560]">Welcome back, {user?.name}</p>
         </div>
-        <Button className="bg-[#E84621] hover:bg-[#C03518] text-white gap-2" disabled>
-          <Plus className="w-4 h-4" /> Create Event
-        </Button>
+        <Link href="/organiser/events/create">
+          <Button className="bg-[#E84621] hover:bg-[#C03518] text-white gap-2">
+            <Plus className="w-4 h-4" /> Create Event
+          </Button>
+        </Link>
       </div>
 
       {/* Stats Cards */}
