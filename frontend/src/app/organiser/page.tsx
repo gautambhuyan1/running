@@ -37,10 +37,6 @@ export default function OrganiserDashboardPage() {
     }).catch(() => {}).finally(() => setLoading(false));
   }, [user, router]);
 
-  if (loading || !dashboard) {
-    return <div className="max-w-6xl mx-auto px-4 py-10"><Card className="h-96 animate-pulse bg-gray-100" /></div>;
-  }
-
   const statusColors: Record<string, string> = {
     draft: "bg-gray-100 text-gray-700",
     pending: "bg-yellow-100 text-yellow-700",
@@ -62,6 +58,9 @@ export default function OrganiserDashboardPage() {
         </Link>
       </div>
 
+      {loading && <div className="h-64 bg-gray-100 rounded-xl animate-pulse" />}
+
+      {!loading && dashboard && <>
       {/* Stats Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {[
@@ -156,6 +155,7 @@ export default function OrganiserDashboardPage() {
           </Card>
         ))}
       </div>
+      </>}
     </div>
   );
 }
