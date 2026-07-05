@@ -21,6 +21,8 @@ uploads/
 
 # Misc
 .DS_Store
+.playwright-mcp/
+test-*.png
 *.pem
 *.tsbuildinfo
 next-env.d.ts
