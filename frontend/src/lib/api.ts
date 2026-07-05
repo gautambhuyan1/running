@@ -220,6 +220,10 @@ class ApiClient {
     return this.request<any[]>("/ngos");
   }
 
+  async getCampaigns() {
+    return this.request<any[]>("/campaigns");
+  }
+
   async getEventCampaign(eventId: string) {
     return this.request<any>(`/events/${eventId}/campaign`);
   }

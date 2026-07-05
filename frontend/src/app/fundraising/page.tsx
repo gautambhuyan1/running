@@ -13,25 +13,10 @@ export default function FundraisingPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function load() {
-      try {
-        const eventsRes = await api.getEvents({ status: "live", limit: "50" });
-        const events = eventsRes.events ?? eventsRes;
-        const results = await Promise.allSettled(
-          events.map((e: any) => api.getEventCampaign(e.id).then((c) => ({ ...c, event: e })))
-        );
-        const active = results
-          .filter((r): r is PromiseFulfilledResult<any> => r.status === "fulfilled")
-          .map((r) => r.value)
-          .filter((c) => c.isActive);
-        setCampaigns(active);
-      } catch {
-        setCampaigns([]);
-      } finally {
-        setLoading(false);
-      }
-    }
-    load();
+    api.getCampaigns()
+      .then(setCampaigns)
+      .catch(() => setCampaigns([]))
+      .finally(() => setLoading(false));
   }, []);
 
   return (

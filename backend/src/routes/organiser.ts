@@ -100,7 +100,7 @@ router.get("/dashboard", authenticate, requireRole("organiser", "admin"), async 
           include: { _count: { select: { registrations: true } } },
         },
         campaign: {
-          select: { id: true, goalAmount: true, description: true },
+          select: { id: true, goalAmount: true, description: true, isActive: true },
         },
       },
     });
@@ -116,6 +116,25 @@ router.get("/dashboard", authenticate, requireRole("organiser", "admin"), async 
     const totalRegistrations = allRegistrations.length;
     const totalRevenue = allRegistrations.reduce((sum, r) => sum + r.amountPaid, 0);
 
+    // Compute totalRaised for each campaign
+    const campaignIds = events.map((e) => e.campaign?.id).filter(Boolean) as string[];
+    const raisedByCampaign: Record<string, number> = {};
+    if (campaignIds.length > 0) {
+      const fundraisers = await prisma.fundraiser.findMany({
+        where: { campaignId: { in: campaignIds } },
+        select: { id: true, campaignId: true },
+      });
+      const raisedAggs = await prisma.donation.groupBy({
+        by: ["fundraiserId"],
+        _sum: { amount: true },
+        where: { status: "confirmed", fundraiserId: { in: fundraisers.map((f) => f.id) } },
+      });
+      for (const f of fundraisers) {
+        const agg = raisedAggs.find((r) => r.fundraiserId === f.id);
+        raisedByCampaign[f.campaignId] = (raisedByCampaign[f.campaignId] ?? 0) + (agg?._sum.amount ?? 0);
+      }
+    }
+
     res.json({
       totalEvents,
       liveEvents,
@@ -129,7 +148,7 @@ router.get("/dashboard", authenticate, requireRole("organiser", "admin"), async 
         status: e.status,
         eventDate: e.eventDate,
         registrations: e.categories.reduce((sum, cat) => sum + cat._count.registrations, 0),
-        campaign: e.campaign ?? null,
+        campaign: e.campaign ? { ...e.campaign, totalRaised: raisedByCampaign[e.campaign.id] ?? 0 } : null,
       })),
     });
   } catch (error) {

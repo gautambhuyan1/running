@@ -81,6 +81,41 @@ router.get("/events/:eventId/campaign", async (req, res) => {
   }
 });
 
+// GET /api/campaigns — all active campaigns for the fundraising hub
+router.get("/campaigns", async (_req, res) => {
+  try {
+    const campaigns = await prisma.fundraisingCampaign.findMany({
+      where: { isActive: true, event: { status: "live" } },
+      include: {
+        event: { select: { id: true, title: true, slug: true, city: true, eventDate: true, coverImageUrl: true, status: true } },
+        _count: { select: { fundraisers: true } },
+      },
+      orderBy: { createdAt: "desc" },
+    });
+
+    const raisedAggs = await prisma.donation.groupBy({
+      by: ["fundraiserId"],
+      _sum: { amount: true },
+      where: { status: "confirmed", fundraiser: { campaignId: { in: campaigns.map((c) => c.id) } } },
+    });
+
+    const fundraisers = await prisma.fundraiser.findMany({
+      where: { campaignId: { in: campaigns.map((c) => c.id) } },
+      select: { id: true, campaignId: true },
+    });
+
+    const raisedByCampaign: Record<string, number> = {};
+    for (const f of fundraisers) {
+      const agg = raisedAggs.find((r) => r.fundraiserId === f.id);
+      raisedByCampaign[f.campaignId] = (raisedByCampaign[f.campaignId] ?? 0) + (agg?._sum.amount ?? 0);
+    }
+
+    res.json(campaigns.map((c) => ({ ...c, totalRaised: raisedByCampaign[c.id] ?? 0 })));
+  } catch {
+    res.status(500).json({ error: "Failed to fetch campaigns" });
+  }
+});
+
 // GET /api/events/:eventId/fundraisers
 router.get("/events/:eventId/fundraisers", optionalAuth, async (req, res) => {
   try {
