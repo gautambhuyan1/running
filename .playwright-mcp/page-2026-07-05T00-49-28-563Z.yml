@@ -1,0 +1,74 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link "MYMove" [ref=e6] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e7]:
+          - link "Events" [ref=e8] [cursor=pointer]:
+            - /url: /events
+          - link "Calendar" [ref=e9] [cursor=pointer]:
+            - /url: /calendar
+          - link "Fund Raising" [ref=e10] [cursor=pointer]:
+            - /url: /fundraising
+      - generic [ref=e11]:
+        - link [ref=e12] [cursor=pointer]:
+          - /url: /notifications
+          - img [ref=e13]
+        - button "AP Ananya Patel" [ref=e16]:
+          - generic [ref=e18]: AP
+          - generic [ref=e19]: Ananya Patel
+  - main [ref=e20]:
+    - generic [ref=e21]:
+      - generic [ref=e23]:
+        - generic [ref=e24]: Run for a cause
+        - heading "Fund Raising" [level=1] [ref=e25]
+        - paragraph [ref=e26]: Turn your kilometres into change. Create a fundraiser for your race and rally your supporters for a cause you believe in.
+      - generic [ref=e28]:
+        - generic [ref=e29]:
+          - generic [ref=e30]: 🏃
+          - heading "Pick your race" [level=3] [ref=e31]
+          - paragraph [ref=e32]: Choose a live event that has fundraising enabled by the organiser
+        - generic [ref=e33]:
+          - generic [ref=e34]: ❤️
+          - heading "Create your page" [level=3] [ref=e35]
+          - paragraph [ref=e36]: Pick an NGO, write your story, set a goal, and publish
+        - generic [ref=e37]:
+          - generic [ref=e38]: 💰
+          - heading "Collect donations" [level=3] [ref=e39]
+          - paragraph [ref=e40]: Share your page and receive donations via Razorpay
+      - heading "Active Campaigns" [level=2] [ref=e42]
+  - contentinfo [ref=e47]:
+    - generic [ref=e48]:
+      - generic [ref=e49]:
+        - generic [ref=e50]:
+          - generic [ref=e51]: MYMove
+          - paragraph [ref=e52]: India's running event discovery, registration & ticketing platform.
+        - generic [ref=e53]:
+          - heading "Explore" [level=4] [ref=e54]
+          - generic [ref=e55]:
+            - link "All Events" [ref=e56] [cursor=pointer]:
+              - /url: /events
+            - link "Race Calendar" [ref=e57] [cursor=pointer]:
+              - /url: /calendar
+            - link "Half Marathons" [ref=e58] [cursor=pointer]:
+              - /url: /events?category=HM
+            - link "Full Marathons" [ref=e59] [cursor=pointer]:
+              - /url: /events?category=FM
+        - generic [ref=e60]:
+          - heading "For Organisers" [level=4] [ref=e61]
+          - generic [ref=e62]:
+            - link "List Your Event" [ref=e63] [cursor=pointer]:
+              - /url: /auth/register?role=organiser
+            - link "Organiser Dashboard" [ref=e64] [cursor=pointer]:
+              - /url: /organiser
+        - generic [ref=e65]:
+          - heading "Support" [level=4] [ref=e66]
+          - generic [ref=e67]:
+            - generic [ref=e68]: contact@mymove.in
+            - generic [ref=e69]: +91 98765 43210
+      - generic [ref=e70]:
+        - strong [ref=e71]: MYMove
+        - text: © 2026. All rights reserved.
+  - region "Notifications alt+T"
+  - alert [ref=e72]

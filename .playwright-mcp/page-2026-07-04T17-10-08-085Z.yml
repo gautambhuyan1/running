@@ -1,0 +1,84 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]: Fundraising has officially closed. Thank you all for your incredible support and contributions.
+    - generic [ref=e6]:
+      - link "Home" [ref=e7] [cursor=pointer]:
+        - /url: /
+        - img "Charity logo" [ref=e9]
+      - generic [ref=e10]:
+        - button "Categories" [ref=e11]:
+          - text: Categories
+          - img [ref=e12]
+        - button "Resources" [ref=e14]:
+          - text: Resources
+          - img [ref=e15]
+        - link "Charity Bibs" [ref=e17] [cursor=pointer]:
+          - /url: /charity-bibs
+        - link "Leaderboard" [ref=e18] [cursor=pointer]:
+          - /url: /leaderboard
+        - button "Contact Us" [ref=e19]
+      - generic [ref=e20]:
+        - button "Start Fundraising" [ref=e21]
+        - link "Donate Now" [ref=e22] [cursor=pointer]:
+          - /url: /donate
+          - button "Donate Now" [ref=e23]
+  - main [ref=e24]:
+    - img [ref=e34]
+  - contentinfo [ref=e36]:
+    - generic [ref=e37]:
+      - generic [ref=e38]:
+        - generic [ref=e39]:
+          - img "United Way Bengaluru Logo" [ref=e41]
+          - generic [ref=e42]:
+            - heading "We would love to hear from you." [level=3] [ref=e43]
+            - paragraph [ref=e44]: "Whether you have a question or just want to say hello, reach out to us at:"
+            - paragraph [ref=e45]:
+              - text: "Email:"
+              - link "tcsw10K@uwbengaluru.org" [ref=e46] [cursor=pointer]:
+                - /url: mailto:tcsw10K@uwbengaluru.org
+          - generic [ref=e47]:
+            - link "Follow us on LinkedIn" [ref=e48] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/united-way-of-bengaluru/
+              - img [ref=e49]
+            - link "Follow us on Facebook" [ref=e51] [cursor=pointer]:
+              - /url: https://www.facebook.com/UnitedWayBengaluru/
+              - img [ref=e52]
+            - link "Follow us on Instagram" [ref=e54] [cursor=pointer]:
+              - /url: https://www.instagram.com/uwblr/
+              - img [ref=e55]
+            - link "Follow us on X (Twitter)" [ref=e57] [cursor=pointer]:
+              - /url: https://x.com/uwbe
+              - img [ref=e58]
+            - link "Subscribe to our YouTube channel" [ref=e60] [cursor=pointer]:
+              - /url: https://youtube.com/@uwbengaluru?si=SaZh5-hLIvwhCBnU
+              - img [ref=e61]
+        - generic [ref=e63]:
+          - heading "Quick Links" [level=4] [ref=e64]
+          - list [ref=e65]:
+            - listitem [ref=e66]:
+              - link "Philanthropy structure" [ref=e67] [cursor=pointer]:
+                - /url: /Philantrophy Structure- UWBe TCSWorld10K Bengaluru 2026.pdf
+            - listitem [ref=e68]:
+              - link "FAQ" [ref=e69] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=e70]:
+              - link "Charity Bibs" [ref=e71] [cursor=pointer]:
+                - /url: /charity-bibs
+            - listitem [ref=e72]:
+              - link "Contact Us" [ref=e73] [cursor=pointer]:
+                - /url: /contact-us
+          - heading "Legal" [level=4] [ref=e74]
+          - list [ref=e75]:
+            - listitem [ref=e76]:
+              - link "Privacy Policy" [ref=e77] [cursor=pointer]:
+                - /url: /privacy
+            - listitem [ref=e78]:
+              - link "Terms & Conditions" [ref=e79] [cursor=pointer]:
+                - /url: /termsandconditions
+            - listitem [ref=e80]:
+              - link "Cancellation & Refund Policy" [ref=e81] [cursor=pointer]:
+                - /url: /cancellations
+      - paragraph [ref=e83]: © Copyright 2026 United Way Bengaluru. All Rights Reserved
+  - region "Notifications (F8)":
+    - list
+  - alert [ref=e84]

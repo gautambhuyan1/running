@@ -1,0 +1,2 @@
+[  420239ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.mymoveclub.com/api/events/mumbai-marathon-2026:0
+[  427778ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://api.mymoveclub.com/api/events/mumbai-marathon-2026:0

@@ -1,0 +1,136 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link "MYMove" [ref=e6] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e7]:
+          - link "Events" [ref=e8] [cursor=pointer]:
+            - /url: /events
+          - link "Calendar" [ref=e9] [cursor=pointer]:
+            - /url: /calendar
+          - link "Fund Raising" [ref=e10] [cursor=pointer]:
+            - /url: /fundraising
+      - generic [ref=e11]:
+        - link [ref=e44] [cursor=pointer]:
+          - /url: /notifications
+          - img [ref=e45]
+        - button "AU Admin User" [ref=e48]:
+          - generic [ref=e50]: AU
+          - generic [ref=e51]: Admin User
+  - main [ref=e16]:
+    - generic [ref=e839]:
+      - generic [ref=e842]:
+        - generic [ref=e843]: Fundraising Campaign
+        - heading "Mumbai Marathon 2026" [level=1] [ref=e844]
+        - paragraph [ref=e845]: Mumbai · 14 Jun 2026
+      - generic [ref=e846]:
+        - generic [ref=e847]:
+          - paragraph [ref=e848]: Run for a cause! Every kilometre you clock at Mumbai Marathon 2026 can change a life. Support our NGO partners working on education, nutrition, and elder care.
+          - generic [ref=e849]:
+            - generic [ref=e850]:
+              - paragraph [ref=e851]: Total Raised
+              - paragraph [ref=e852]: ₹14,000
+            - generic [ref=e853]:
+              - paragraph [ref=e854]: Campaign Goal
+              - paragraph [ref=e855]: ₹5,00,000
+            - generic [ref=e856]:
+              - paragraph [ref=e857]: Fundraisers
+              - paragraph [ref=e858]: "3"
+          - paragraph [ref=e861]: 3% of goal reached
+        - generic [ref=e862]:
+          - generic [ref=e863]:
+            - button "Fundraisers" [ref=e864]:
+              - img [ref=e865]
+              - text: Fundraisers
+            - button "Leaderboard" [ref=e870]:
+              - img [ref=e871]
+              - text: Leaderboard
+          - link "Start Fundraising" [ref=e877] [cursor=pointer]:
+            - /url: /fundraising/mumbai-marathon-2026/start
+            - button "Start Fundraising" [ref=e878]:
+              - img
+              - text: Start Fundraising
+        - generic [ref=e879]:
+          - 'link "V Running for Mid-Day Meals – Akshaya Patra Vikram Singh · Delhi No child should go hungry. I''m running the Mumbai Marathon to support Akshaya Patra''s mid-day meal programme. ₹1250 feeds one child for an entire year. Every donation counts! For: Akshaya Patra ₹7,500 15% of ₹50,000 Starter" [ref=e880] [cursor=pointer]':
+            - /url: /fundraising/mumbai-marathon-2026/141ff621-ffc0-4ac1-9613-2edd4d0bc0ac
+            - generic [ref=e881]:
+              - generic [ref=e882]:
+                - generic [ref=e883]: V
+                - generic [ref=e884]:
+                  - paragraph [ref=e885]: Running for Mid-Day Meals – Akshaya Patra
+                  - paragraph [ref=e886]: Vikram Singh · Delhi
+              - paragraph [ref=e887]: No child should go hungry. I'm running the Mumbai Marathon to support Akshaya Patra's mid-day meal programme. ₹1250 feeds one child for an entire year. Every donation counts!
+              - generic [ref=e888]: "For: Akshaya Patra"
+              - generic [ref=e889]:
+                - generic [ref=e890]:
+                  - generic [ref=e891]: ₹7,500
+                  - generic [ref=e892]: 15%
+                - paragraph [ref=e895]: of ₹50,000
+              - generic [ref=e896]: Starter
+          - 'link "A Running 21km for Teach For India Ananya Patel · Mumbai I''m running the Mumbai Half Marathon to raise funds for Teach For India — a movement that places talented graduates in under-resourced schools. Every rupee you donate will help train a teacher who will impact 35+ children every year. Join me on this journey! For: Teach For India ₹6,500 26% of ₹25,000 Rising Star" [ref=e897] [cursor=pointer]':
+            - /url: /fundraising/mumbai-marathon-2026/487cfbc8-e58b-494d-82c3-7e9002476cb1
+            - generic [ref=e898]:
+              - generic [ref=e899]:
+                - generic [ref=e900]: A
+                - generic [ref=e901]:
+                  - paragraph [ref=e902]: Running 21km for Teach For India
+                  - paragraph [ref=e903]: Ananya Patel · Mumbai
+              - paragraph [ref=e904]: I'm running the Mumbai Half Marathon to raise funds for Teach For India — a movement that places talented graduates in under-resourced schools. Every rupee you donate will help train a teacher who will impact 35+ children every year. Join me on this journey!
+              - generic [ref=e905]: "For: Teach For India"
+              - generic [ref=e906]:
+                - generic [ref=e907]:
+                  - generic [ref=e908]: ₹6,500
+                  - generic [ref=e909]: 26%
+                - paragraph [ref=e912]: of ₹25,000
+              - generic [ref=e913]: Rising Star
+          - 'link "G My Running Event Gautam · 103 Marion Dr Run for fun blah blah For: Akshaya Patra ₹0 0% of ₹11,997 Starter" [ref=e914] [cursor=pointer]':
+            - /url: /fundraising/mumbai-marathon-2026/f58f34b4-57e1-41cc-b7ed-99189e0fe72a
+            - generic [ref=e915]:
+              - generic [ref=e916]:
+                - generic [ref=e917]: G
+                - generic [ref=e918]:
+                  - paragraph [ref=e919]: My Running Event
+                  - paragraph [ref=e920]: Gautam · 103 Marion Dr
+              - paragraph [ref=e921]: Run for fun blah blah
+              - generic [ref=e922]: "For: Akshaya Patra"
+              - generic [ref=e923]:
+                - generic [ref=e924]:
+                  - generic [ref=e925]: ₹0
+                  - generic [ref=e926]: 0%
+                - paragraph [ref=e928]: of ₹11,997
+              - generic [ref=e929]: Starter
+  - contentinfo [ref=e19]:
+    - generic [ref=e20]:
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - generic [ref=e23]: MYMove
+          - paragraph [ref=e24]: India's running event discovery, registration & ticketing platform.
+        - generic [ref=e25]:
+          - heading "Explore" [level=4] [ref=e26]
+          - generic [ref=e27]:
+            - link "All Events" [ref=e28] [cursor=pointer]:
+              - /url: /events
+            - link "Race Calendar" [ref=e29] [cursor=pointer]:
+              - /url: /calendar
+            - link "Half Marathons" [ref=e30] [cursor=pointer]:
+              - /url: /events?category=HM
+            - link "Full Marathons" [ref=e31] [cursor=pointer]:
+              - /url: /events?category=FM
+        - generic [ref=e32]:
+          - heading "For Organisers" [level=4] [ref=e33]
+          - generic [ref=e34]:
+            - link "List Your Event" [ref=e35] [cursor=pointer]:
+              - /url: /auth/register?role=organiser
+            - link "Organiser Dashboard" [ref=e36] [cursor=pointer]:
+              - /url: /organiser
+        - generic [ref=e37]:
+          - heading "Support" [level=4] [ref=e38]
+          - generic [ref=e39]:
+            - generic [ref=e40]: contact@mymove.in
+            - generic [ref=e41]: +91 98765 43210
+      - generic [ref=e42]:
+        - strong [ref=e43]: MYMove
+        - text: © 2026. All rights reserved.
+  - region "Notifications alt+T"
+  - alert [ref=e213]

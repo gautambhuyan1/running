@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s http://localhost:4000/api/events)",
+      "Bash(curl -s -X POST http://localhost:4000/api/auth/login -H \"Content-Type: application/json\" -d '{\"email\":\"ananya@gmail.com\",\"password\":\"password123\"}')",
+      "Bash(fuser -k 4000/tcp)",
+      "Bash(npm install:*)",
+      "Bash(npx shadcn@latest add sonner -y)",
+      "Bash(npm run *)",
+      "Bash(echo \"Backend PID: $!\")",
+      "Bash(curl -s http://localhost:4000/api/health)",
+      "Bash(npx prisma *)",
+      "Bash(npx next *)",
+      "Bash(echo \"Frontend PID: $!\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(python3 -m json.tool)",
+      "Read(//Users/gautambhuyan/.claude/**)",
+      "Bash(npm root *)",
+      "Bash(/Users/gautambhuyan/.nvm/versions/node/v24.14.0/bin/playwright-mcp --version)",
+      "Bash(claude mcp *)",
+      "Bash(/Users/gautambhuyan/.nvm/versions/node/v24.14.0/bin/playwright-mcp)",
+      "Bash(curl -s -X POST http://localhost:4000/api/auth/login -H 'Content-Type: application/json' -d '{\"email\":\"ananya@gmail.com\",\"password\":\"password123\"}')",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(curl -s -X POST http://localhost:4000/api/auth/login -H 'Content-Type: application/json' -d '{\"email\":\"vikram@gmail.com\",\"password\":\"password123\"}')",
+      "Bash(curl -s -X POST http://localhost:4000/api/auth/login -H 'Content-Type: application/json' -d '{\"email\":\"priya@mymoveclub.com\",\"password\":\"password123\"}')",
+      "Bash(curl -s -X POST http://localhost:4000/api/auth/login -H 'Content-Type: application/json' -d '{\"email\":\"admin@mymoveclub.com\",\"password\":\"password123\"}')",
+      "Bash(curl -s http://localhost:3002)",
+      "Bash(cp /tmp/debug_dashboard.ts /Users/gautambhuyan/Projects/running/backend/debug_dashboard.ts)",
+      "Bash(npx tsx *)",
+      "Bash(rm /Users/gautambhuyan/Projects/running/backend/debug_dashboard.ts)",
+      "Bash(kill 43119)"
+    ]
+  }
+}

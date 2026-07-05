@@ -1,0 +1,4 @@
+[     843ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://running-production-c0b2.up.railway.app/api/events/b4d3a1d1-a2b0-4133-8840-99ffcca46166/campaign:0
+[     844ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://running-production-c0b2.up.railway.app/api/events/a7714b1e-450c-42f5-a1f7-5c6f7d42f574/campaign:0
+[     896ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://running-production-c0b2.up.railway.app/api/events/62086b95-08dc-4c0d-a9a8-77b3258e3497/campaign:0
+[     896ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://running-production-c0b2.up.railway.app/api/events/532eb624-519f-4c27-9361-69ac12cbbe83/campaign:0

@@ -75,6 +75,27 @@ router.get("/users", authenticate, requireRole("admin"), async (req, res) => {
   }
 });
 
+// PUT /api/admin/users/:id — update user fields (name, email, role, city)
+router.put("/users/:id", authenticate, requireRole("admin"), async (req, res) => {
+  try {
+    const { name, email, role, city } = req.body;
+    const data: any = {};
+    if (name) data.name = name;
+    if (email) data.email = email;
+    if (role) data.role = role;
+    if (city !== undefined) data.city = city;
+
+    const user = await prisma.user.update({
+      where: { id: req.params.id },
+      data,
+      select: { id: true, name: true, email: true, role: true, city: true },
+    });
+    res.json({ message: "User updated", user });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update user" });
+  }
+});
+
 // PUT /api/admin/users/:id/verify — verify organiser account
 router.put("/users/:id/verify", authenticate, requireRole("admin"), async (req, res) => {
   try {

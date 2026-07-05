@@ -32,7 +32,7 @@ export function Footer() {
           <div>
             <h4 className="font-semibold text-white text-sm mb-3">Support</h4>
             <div className="space-y-2 text-sm">
-              <span className="block">contact@mymove.in</span>
+              <span className="block">contact@mymoveclub.com</span>
               <span className="block">+91 98765 43210</span>
             </div>
           </div>

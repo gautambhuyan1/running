@@ -1,0 +1,275 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link "MYMove" [ref=e6] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e7]:
+          - link "Events" [ref=e8] [cursor=pointer]:
+            - /url: /events
+          - link "Calendar" [ref=e9] [cursor=pointer]:
+            - /url: /calendar
+          - link "Fund Raising" [ref=e10] [cursor=pointer]:
+            - /url: /fundraising
+      - generic [ref=e11]:
+        - link [ref=e44] [cursor=pointer]:
+          - /url: /notifications
+          - img [ref=e45]
+        - button "AU Admin User" [ref=e48]:
+          - generic [ref=e50]: AU
+          - generic [ref=e51]: Admin User
+  - main [ref=e16]:
+    - generic [ref=e214]:
+      - generic [ref=e215]:
+        - generic [ref=e216]:
+          - img [ref=e217]
+          - heading "Admin Panel" [level=1] [ref=e219]
+        - button "Create Event" [ref=e220]:
+          - img
+          - text: Create Event
+      - generic [ref=e221]:
+        - generic [ref=e222]:
+          - img [ref=e224]
+          - generic [ref=e229]: "8"
+          - generic [ref=e230]: Total Users
+        - generic [ref=e231]:
+          - img [ref=e233]
+          - generic [ref=e235]: "7"
+          - generic [ref=e236]: Total Events
+        - generic [ref=e237]:
+          - img [ref=e239]
+          - generic [ref=e241]: "9"
+          - generic [ref=e242]: Registrations
+        - generic [ref=e243]:
+          - img [ref=e245]
+          - generic [ref=e248]: ₹9,700
+          - generic [ref=e249]: Revenue
+      - generic [ref=e250]:
+        - tablist [ref=e251]:
+          - tab "All Events 7" [selected] [ref=e252]:
+            - text: All Events
+            - generic [ref=e253]: "7"
+          - tab "Pending 1" [ref=e254]:
+            - text: Pending
+            - generic [ref=e255]: "1"
+          - tab "Users" [ref=e256]
+          - tab "Analytics" [ref=e257]
+        - tabpanel "All Events 7" [ref=e258]:
+          - generic [ref=e259]:
+            - generic [ref=e261]:
+              - generic [ref=e262]:
+                - generic [ref=e263]:
+                  - generic [ref=e264]: Bangalore Night Run 2026
+                  - generic [ref=e265]: pending
+                - generic [ref=e266]:
+                  - generic [ref=e267]:
+                    - img [ref=e268]
+                    - text: Bangalore
+                  - generic [ref=e271]:
+                    - img [ref=e272]
+                    - text: 14 Dec 2026
+                  - generic [ref=e274]: By Priya Sharma
+                - generic [ref=e276]: 10K — ₹1200
+              - generic [ref=e277]:
+                - link [ref=e278] [cursor=pointer]:
+                  - /url: /events/bangalore-night-run-2026-mr71k4oo
+                  - button "View" [ref=e279]:
+                    - img
+                - button "Edit" [ref=e280]:
+                  - img
+                - button "Delete" [ref=e281]:
+                  - img
+            - generic [ref=e283]:
+              - generic [ref=e284]:
+                - generic [ref=e285]:
+                  - generic [ref=e286]: Hyderabad Heritage Run
+                  - generic [ref=e287]: completed
+                - generic [ref=e288]:
+                  - generic [ref=e289]:
+                    - img [ref=e290]
+                    - text: Hyderabad
+                  - generic [ref=e293]:
+                    - img [ref=e294]
+                    - text: 19 Apr 2026
+                  - generic [ref=e296]: By Rajesh Kumar
+                - generic [ref=e297]:
+                  - generic [ref=e298]: 5K — ₹500
+                  - generic [ref=e299]: 10K — ₹800
+                  - generic [ref=e300]: HM — ₹1400
+              - generic [ref=e301]:
+                - link [ref=e302] [cursor=pointer]:
+                  - /url: /events/hyderabad-heritage-run-2026
+                  - button "View" [ref=e303]:
+                    - img
+                - button "Edit" [ref=e304]:
+                  - img
+                - button "Delete" [ref=e305]:
+                  - img
+            - generic [ref=e307]:
+              - generic [ref=e308]:
+                - generic [ref=e309]:
+                  - generic [ref=e310]: Goa Beach Marathon
+                  - generic [ref=e311]: live
+                  - generic [ref=e312]: Featured
+                - generic [ref=e313]:
+                  - generic [ref=e314]:
+                    - img [ref=e315]
+                    - text: Goa
+                  - generic [ref=e318]:
+                    - img [ref=e319]
+                    - text: 11 Sep 2026
+                  - generic [ref=e321]: By Priya Sharma
+                - generic [ref=e322]:
+                  - generic [ref=e323]: 5K — ₹800
+                  - generic [ref=e324]: 10K — ₹1200
+                  - generic [ref=e325]: HM — ₹1800
+                  - generic [ref=e326]: FM — ₹2500
+              - generic [ref=e327]:
+                - link [ref=e328] [cursor=pointer]:
+                  - /url: /events/goa-beach-marathon-2026
+                  - button "View" [ref=e329]:
+                    - img
+                - button "Edit" [ref=e330]:
+                  - img
+                - button "Delete" [ref=e331]:
+                  - img
+            - generic [ref=e333]:
+              - generic [ref=e334]:
+                - generic [ref=e335]:
+                  - generic [ref=e336]: Bangalore 10K Challenge
+                  - generic [ref=e337]: live
+                - generic [ref=e338]:
+                  - generic [ref=e339]:
+                    - img [ref=e340]
+                    - text: Bangalore
+                  - generic [ref=e343]:
+                    - img [ref=e344]
+                    - text: 04 Aug 2026
+                  - generic [ref=e346]: By Rajesh Kumar
+                - generic [ref=e347]:
+                  - generic [ref=e348]: 5K — ₹500
+                  - generic [ref=e349]: 10K — ₹900
+              - generic [ref=e350]:
+                - link [ref=e351] [cursor=pointer]:
+                  - /url: /events/bangalore-10k-challenge-2026
+                  - button "View" [ref=e352]:
+                    - img
+                - button "Edit" [ref=e353]:
+                  - img
+                - button "Delete" [ref=e354]:
+                  - img
+            - generic [ref=e356]:
+              - generic [ref=e357]:
+                - generic [ref=e358]:
+                  - generic [ref=e359]: Pune Night Run
+                  - generic [ref=e360]: live
+                  - generic [ref=e361]: Featured
+                - generic [ref=e362]:
+                  - generic [ref=e363]:
+                    - img [ref=e364]
+                    - text: Pune
+                  - generic [ref=e367]:
+                    - img [ref=e368]
+                    - text: 09 May 2026
+                  - generic [ref=e370]: By Priya Sharma
+                - generic [ref=e371]:
+                  - generic [ref=e372]: 5K — ₹500
+                  - generic [ref=e373]: 10K — ₹800
+              - generic [ref=e374]:
+                - link [ref=e375] [cursor=pointer]:
+                  - /url: /events/pune-night-run-2026
+                  - button "View" [ref=e376]:
+                    - img
+                - button "Edit" [ref=e377]:
+                  - img
+                - button "Delete" [ref=e378]:
+                  - img
+            - generic [ref=e380]:
+              - generic [ref=e381]:
+                - generic [ref=e382]:
+                  - generic [ref=e383]: Delhi Half Marathon
+                  - generic [ref=e384]: live
+                  - generic [ref=e385]: Featured
+                - generic [ref=e386]:
+                  - generic [ref=e387]:
+                    - img [ref=e388]
+                    - text: Delhi
+                  - generic [ref=e391]:
+                    - img [ref=e392]
+                    - text: 19 Jul 2026
+                  - generic [ref=e394]: By Rajesh Kumar
+                - generic [ref=e395]:
+                  - generic [ref=e396]: 10K — ₹1000
+                  - generic [ref=e397]: HM — ₹1500
+                  - generic [ref=e398]: 5K — ₹600
+              - generic [ref=e399]:
+                - link [ref=e400] [cursor=pointer]:
+                  - /url: /events/delhi-half-marathon-2026
+                  - button "View" [ref=e401]:
+                    - img
+                - button "Edit" [ref=e402]:
+                  - img
+                - button "Delete" [ref=e403]:
+                  - img
+            - generic [ref=e405]:
+              - generic [ref=e406]:
+                - generic [ref=e407]:
+                  - generic [ref=e408]: Mumbai Marathon 2026
+                  - generic [ref=e409]: live
+                  - generic [ref=e410]: Featured
+                - generic [ref=e411]:
+                  - generic [ref=e412]:
+                    - img [ref=e413]
+                    - text: Mumbai
+                  - generic [ref=e416]:
+                    - img [ref=e417]
+                    - text: 14 Jun 2026
+                  - generic [ref=e419]: By Priya Sharma
+                - generic [ref=e420]:
+                  - generic [ref=e421]: 5K — ₹750
+                  - generic [ref=e422]: 10K — ₹1200
+                  - generic [ref=e423]: HM — ₹1800
+                  - generic [ref=e424]: FM — ₹2500
+              - generic [ref=e425]:
+                - link [ref=e426] [cursor=pointer]:
+                  - /url: /events/mumbai-marathon-2026
+                  - button "View" [ref=e427]:
+                    - img
+                - button "Edit" [ref=e428]:
+                  - img
+                - button "Delete" [ref=e429]:
+                  - img
+  - contentinfo [ref=e19]:
+    - generic [ref=e20]:
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - generic [ref=e23]: MYMove
+          - paragraph [ref=e24]: India's running event discovery, registration & ticketing platform.
+        - generic [ref=e25]:
+          - heading "Explore" [level=4] [ref=e26]
+          - generic [ref=e27]:
+            - link "All Events" [ref=e28] [cursor=pointer]:
+              - /url: /events
+            - link "Race Calendar" [ref=e29] [cursor=pointer]:
+              - /url: /calendar
+            - link "Half Marathons" [ref=e30] [cursor=pointer]:
+              - /url: /events?category=HM
+            - link "Full Marathons" [ref=e31] [cursor=pointer]:
+              - /url: /events?category=FM
+        - generic [ref=e32]:
+          - heading "For Organisers" [level=4] [ref=e33]
+          - generic [ref=e34]:
+            - link "List Your Event" [ref=e35] [cursor=pointer]:
+              - /url: /auth/register?role=organiser
+            - link "Organiser Dashboard" [ref=e36] [cursor=pointer]:
+              - /url: /organiser
+        - generic [ref=e37]:
+          - heading "Support" [level=4] [ref=e38]
+          - generic [ref=e39]:
+            - generic [ref=e40]: contact@mymove.in
+            - generic [ref=e41]: +91 98765 43210
+      - generic [ref=e42]:
+        - strong [ref=e43]: MYMove
+        - text: © 2026. All rights reserved.
+  - region "Notifications alt+T"
+  - alert [ref=e213]

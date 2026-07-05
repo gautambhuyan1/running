@@ -109,11 +109,11 @@ function LoginContent() {
             <button className="hover:text-[#E84621] block" onClick={() => { setEmail("ananya@gmail.com"); setPassword("password123"); }}>
               Runner: ananya@gmail.com
             </button>
-            <button className="hover:text-[#E84621] block" onClick={() => { setEmail("priya@mymove.in"); setPassword("password123"); }}>
-              Organiser: priya@mymove.in
+            <button className="hover:text-[#E84621] block" onClick={() => { setEmail("priya@mymoveclub.com"); setPassword("password123"); }}>
+              Organiser: priya@mymoveclub.com
             </button>
-            <button className="hover:text-[#E84621] block" onClick={() => { setEmail("admin@mymove.in"); setPassword("password123"); }}>
-              Admin: admin@mymove.in
+            <button className="hover:text-[#E84621] block" onClick={() => { setEmail("admin@mymoveclub.com"); setPassword("password123"); }}>
+              Admin: admin@mymoveclub.com
             </button>
           </div>
         </div>

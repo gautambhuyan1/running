@@ -1,0 +1,97 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link "MYMove" [ref=e6] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e7]:
+          - link "Events" [ref=e8] [cursor=pointer]:
+            - /url: /events
+          - link "Calendar" [ref=e9] [cursor=pointer]:
+            - /url: /calendar
+          - link "Fund Raising" [ref=e10] [cursor=pointer]:
+            - /url: /fundraising
+      - generic [ref=e11]:
+        - link [ref=e44] [cursor=pointer]:
+          - /url: /notifications
+          - img [ref=e45]
+        - button "AP Ananya Patel" [ref=e48]:
+          - generic [ref=e50]: AP
+          - generic [ref=e51]: Ananya Patel
+  - main [ref=e16]:
+    - generic [ref=e17]:
+      - link "Back to Goa Beach Marathon" [ref=e52] [cursor=pointer]:
+        - /url: /events/goa-beach-marathon-2026
+        - img [ref=e53]
+        - text: Back to Goa Beach Marathon
+      - generic [ref=e55]:
+        - generic [ref=e56]:
+          - img [ref=e126]
+          - generic [ref=e58]: Select Category
+        - generic [ref=e60]:
+          - img [ref=e149]
+          - generic [ref=e62]: Confirm Details
+        - generic [ref=e64]:
+          - img [ref=e169]
+          - generic [ref=e66]: Payment
+        - generic [ref=e68]:
+          - generic [ref=e69]: "4"
+          - generic [ref=e70]: Confirmation
+      - generic [ref=e171]:
+        - img [ref=e173]
+        - heading "Registration Confirmed!" [level=3] [ref=e175]
+        - paragraph [ref=e176]: You are registered for Goa Beach Marathon
+        - generic [ref=e177]:
+          - generic [ref=e178]: Your Bib Number
+          - generic [ref=e179]: GOA-5K-0001
+        - generic [ref=e180]:
+          - generic [ref=e181]:
+            - generic [ref=e182]: Category
+            - generic [ref=e183]: 5K
+          - generic [ref=e184]:
+            - generic [ref=e185]: Amount Paid
+            - generic [ref=e186]: ₹800
+          - generic [ref=e187]:
+            - generic [ref=e188]: Payment Ref
+            - generic [ref=e189]: pay_stub_mr72j4wy
+        - generic [ref=e190]:
+          - link "View My Registrations" [ref=e191] [cursor=pointer]:
+            - /url: /profile
+            - button "View My Registrations" [ref=e192]
+          - link "Browse More Events" [ref=e193] [cursor=pointer]:
+            - /url: /events
+            - button "Browse More Events" [ref=e194]
+  - contentinfo [ref=e19]:
+    - generic [ref=e20]:
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - generic [ref=e23]: MYMove
+          - paragraph [ref=e24]: India's running event discovery, registration & ticketing platform.
+        - generic [ref=e25]:
+          - heading "Explore" [level=4] [ref=e26]
+          - generic [ref=e27]:
+            - link "All Events" [ref=e28] [cursor=pointer]:
+              - /url: /events
+            - link "Race Calendar" [ref=e29] [cursor=pointer]:
+              - /url: /calendar
+            - link "Half Marathons" [ref=e30] [cursor=pointer]:
+              - /url: /events?category=HM
+            - link "Full Marathons" [ref=e31] [cursor=pointer]:
+              - /url: /events?category=FM
+        - generic [ref=e32]:
+          - heading "For Organisers" [level=4] [ref=e33]
+          - generic [ref=e34]:
+            - link "List Your Event" [ref=e35] [cursor=pointer]:
+              - /url: /auth/register?role=organiser
+            - link "Organiser Dashboard" [ref=e36] [cursor=pointer]:
+              - /url: /organiser
+        - generic [ref=e37]:
+          - heading "Support" [level=4] [ref=e38]
+          - generic [ref=e39]:
+            - generic [ref=e40]: contact@mymove.in
+            - generic [ref=e41]: +91 98765 43210
+      - generic [ref=e42]:
+        - strong [ref=e43]: MYMove
+        - text: © 2026. All rights reserved.
+  - region "Notifications alt+T"
+  - alert [ref=e124]

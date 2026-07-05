@@ -1,0 +1,139 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link "MYMove" [ref=e6] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e7]:
+          - link "Events" [ref=e8] [cursor=pointer]:
+            - /url: /events
+          - link "Calendar" [ref=e9] [cursor=pointer]:
+            - /url: /calendar
+          - link "Fund Raising" [ref=e10] [cursor=pointer]:
+            - /url: /fundraising
+      - generic [ref=e11]:
+        - link [ref=e77] [cursor=pointer]:
+          - /url: /notifications
+          - img [ref=e13]
+        - button "PS Priya Sharma" [ref=e78]:
+          - generic [ref=e18]: PS
+          - generic [ref=e19]: Priya Sharma
+  - main [ref=e20]:
+    - generic [ref=e373]:
+      - link "Back to Dashboard" [ref=e374] [cursor=pointer]:
+        - /url: /organiser
+        - img [ref=e375]
+        - text: Back to Dashboard
+      - generic [ref=e377]:
+        - heading "Create Event" [level=1] [ref=e378]
+        - paragraph [ref=e379]: Your event will be submitted for admin approval before going live.
+      - generic [ref=e380]:
+        - generic [ref=e381]:
+          - heading "Basic Info" [level=2] [ref=e382]
+          - generic [ref=e383]:
+            - generic [ref=e384]: Event Title *
+            - textbox "Event Title *" [ref=e385]:
+              - /placeholder: e.g. Mumbai Marathon 2027
+          - generic [ref=e386]:
+            - generic [ref=e387]:
+              - generic [ref=e388]: City *
+              - textbox "City *" [ref=e389]:
+                - /placeholder: e.g. Mumbai
+            - generic [ref=e390]:
+              - generic [ref=e391]: Venue *
+              - textbox "Venue *" [ref=e392]:
+                - /placeholder: e.g. Azad Maidan
+          - generic [ref=e393]:
+            - generic [ref=e394]: Description *
+            - textbox "Description *" [ref=e395]:
+              - /placeholder: Describe your event…
+        - generic [ref=e396]:
+          - heading "Dates" [level=2] [ref=e397]
+          - generic [ref=e398]:
+            - generic [ref=e399]:
+              - generic [ref=e400]: Event Date *
+              - textbox "Event Date *" [ref=e401]
+            - generic [ref=e402]:
+              - generic [ref=e403]: Registration Deadline *
+              - textbox "Registration Deadline *" [ref=e404]
+        - generic [ref=e405]:
+          - heading "Images & Links" [level=2] [ref=e406]
+          - generic [ref=e407]:
+            - generic [ref=e408]: Cover Image URL
+            - textbox "Cover Image URL" [ref=e409]:
+              - /placeholder: https://...
+          - generic [ref=e410]:
+            - generic [ref=e411]: Route Map URL
+            - textbox "Route Map URL" [ref=e412]:
+              - /placeholder: https://maps.google.com/...
+        - generic [ref=e413]:
+          - generic [ref=e414]:
+            - heading "Race Categories *" [level=2] [ref=e415]
+            - button "Add" [ref=e416]:
+              - img
+              - text: Add
+          - generic [ref=e417]:
+            - generic [ref=e418]:
+              - generic [ref=e419]: Distance
+              - combobox [ref=e420]:
+                - option "3K"
+                - option "5K"
+                - option "10K" [selected]
+                - option "Half Marathon"
+                - option "Full Marathon"
+                - option "50K"
+                - option "Ultra"
+            - generic [ref=e421]:
+              - generic [ref=e422]: Price (₹) *
+              - spinbutton [ref=e423]
+            - generic [ref=e424]:
+              - generic [ref=e425]: Max Slots
+              - spinbutton [ref=e426]
+            - button [disabled]:
+              - img
+        - generic [ref=e427]:
+          - generic [ref=e428]:
+            - heading "FAQs (optional)" [level=2] [ref=e429]
+            - button "Add FAQ" [ref=e430]:
+              - img
+              - text: Add FAQ
+          - paragraph [ref=e431]: No FAQs added yet.
+        - generic [ref=e432]:
+          - button "Submit for Approval" [ref=e433]
+          - link "Cancel" [ref=e434] [cursor=pointer]:
+            - /url: /organiser
+            - button "Cancel" [ref=e435]
+  - contentinfo [ref=e49]:
+    - generic [ref=e50]:
+      - generic [ref=e51]:
+        - generic [ref=e52]:
+          - generic [ref=e53]: MYMove
+          - paragraph [ref=e54]: India's running event discovery, registration & ticketing platform.
+        - generic [ref=e55]:
+          - heading "Explore" [level=4] [ref=e56]
+          - generic [ref=e57]:
+            - link "All Events" [ref=e58] [cursor=pointer]:
+              - /url: /events
+            - link "Race Calendar" [ref=e59] [cursor=pointer]:
+              - /url: /calendar
+            - link "Half Marathons" [ref=e60] [cursor=pointer]:
+              - /url: /events?category=HM
+            - link "Full Marathons" [ref=e61] [cursor=pointer]:
+              - /url: /events?category=FM
+        - generic [ref=e62]:
+          - heading "For Organisers" [level=4] [ref=e63]
+          - generic [ref=e64]:
+            - link "List Your Event" [ref=e65] [cursor=pointer]:
+              - /url: /auth/register?role=organiser
+            - link "Organiser Dashboard" [ref=e66] [cursor=pointer]:
+              - /url: /organiser
+        - generic [ref=e67]:
+          - heading "Support" [level=4] [ref=e68]
+          - generic [ref=e69]:
+            - generic [ref=e70]: contact@mymove.in
+            - generic [ref=e71]: +91 98765 43210
+      - generic [ref=e72]:
+        - strong [ref=e73]: MYMove
+        - text: © 2026. All rights reserved.
+  - region "Notifications alt+T"
+  - alert [ref=e74]

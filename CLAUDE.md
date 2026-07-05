@@ -101,6 +101,6 @@ These are wired but not functional — stubs return success without real calls:
 
 | Email | Role |
 |---|---|
-| admin@mymove.in | Admin |
-| priya@mymove.in | Organiser |
+| admin@mymoveclub.com | Admin |
+| priya@mymoveclub.com | Organiser |
 | ananya@gmail.com | Runner |

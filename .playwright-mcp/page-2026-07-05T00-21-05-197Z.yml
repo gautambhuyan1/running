@@ -1,0 +1,124 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link "MYMove" [ref=e6] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e7]:
+          - link "Events" [ref=e8] [cursor=pointer]:
+            - /url: /events
+          - link "Calendar" [ref=e9] [cursor=pointer]:
+            - /url: /calendar
+          - link "Fund Raising" [ref=e10] [cursor=pointer]:
+            - /url: /fundraising
+      - generic [ref=e11]:
+        - link [ref=e44] [cursor=pointer]:
+          - /url: /notifications
+          - img [ref=e45]
+        - button "AU Admin User" [ref=e48]:
+          - generic [ref=e50]: AU
+          - generic [ref=e51]: Admin User
+  - main [ref=e16]:
+    - generic [ref=e568]:
+      - heading "Race Calendar" [level=1] [ref=e569]
+      - generic [ref=e570]:
+        - button [ref=e571]:
+          - img
+        - heading "July 2026" [level=2] [ref=e572]
+        - button [ref=e573]:
+          - img
+      - generic [ref=e574]:
+        - generic [ref=e575]:
+          - generic [ref=e576]: Sun
+          - generic [ref=e577]: Mon
+          - generic [ref=e578]: Tue
+          - generic [ref=e579]: Wed
+          - generic [ref=e580]: Thu
+          - generic [ref=e581]: Fri
+          - generic [ref=e582]: Sat
+        - generic [ref=e583]:
+          - generic [ref=e588]: "1"
+          - generic [ref=e590]: "2"
+          - generic [ref=e592]: "3"
+          - generic [ref=e594]: "4"
+          - generic [ref=e596]: "5"
+          - generic [ref=e598]: "6"
+          - generic [ref=e600]: "7"
+          - generic [ref=e602]: "8"
+          - generic [ref=e604]: "9"
+          - generic [ref=e606]: "10"
+          - generic [ref=e608]: "11"
+          - generic [ref=e610]: "12"
+          - generic [ref=e612]: "13"
+          - generic [ref=e614]: "14"
+          - generic [ref=e616]: "15"
+          - generic [ref=e618]: "16"
+          - generic [ref=e620]: "17"
+          - generic [ref=e622]: "18"
+          - generic [ref=e623]:
+            - generic [ref=e624]: "19"
+            - link "Delhi Half Marathon" [ref=e626] [cursor=pointer]:
+              - /url: /events/delhi-half-marathon-2026
+              - generic [ref=e627]: Delhi Half Marathon
+          - generic [ref=e629]: "20"
+          - generic [ref=e631]: "21"
+          - generic [ref=e633]: "22"
+          - generic [ref=e635]: "23"
+          - generic [ref=e637]: "24"
+          - generic [ref=e639]: "25"
+          - generic [ref=e641]: "26"
+          - generic [ref=e643]: "27"
+          - generic [ref=e645]: "28"
+          - generic [ref=e647]: "29"
+          - generic [ref=e649]: "30"
+          - generic [ref=e651]: "31"
+      - heading "Events in July 2026" [level=3] [ref=e652]
+      - link "Jul 19 Delhi Half Marathon Delhi 10K HM 5K" [ref=e654] [cursor=pointer]:
+        - /url: /events/delhi-half-marathon-2026
+        - generic [ref=e655]:
+          - generic [ref=e656]:
+            - generic [ref=e657]: Jul
+            - generic [ref=e658]: "19"
+          - generic [ref=e659]:
+            - generic [ref=e660]: Delhi Half Marathon
+            - generic [ref=e661]:
+              - img [ref=e662]
+              - text: Delhi
+          - generic [ref=e665]:
+            - generic [ref=e666]: 10K
+            - generic [ref=e667]: HM
+            - generic [ref=e668]: 5K
+  - contentinfo [ref=e19]:
+    - generic [ref=e20]:
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - generic [ref=e23]: MYMove
+          - paragraph [ref=e24]: India's running event discovery, registration & ticketing platform.
+        - generic [ref=e25]:
+          - heading "Explore" [level=4] [ref=e26]
+          - generic [ref=e27]:
+            - link "All Events" [ref=e28] [cursor=pointer]:
+              - /url: /events
+            - link "Race Calendar" [ref=e29] [cursor=pointer]:
+              - /url: /calendar
+            - link "Half Marathons" [ref=e30] [cursor=pointer]:
+              - /url: /events?category=HM
+            - link "Full Marathons" [ref=e31] [cursor=pointer]:
+              - /url: /events?category=FM
+        - generic [ref=e32]:
+          - heading "For Organisers" [level=4] [ref=e33]
+          - generic [ref=e34]:
+            - link "List Your Event" [ref=e35] [cursor=pointer]:
+              - /url: /auth/register?role=organiser
+            - link "Organiser Dashboard" [ref=e36] [cursor=pointer]:
+              - /url: /organiser
+        - generic [ref=e37]:
+          - heading "Support" [level=4] [ref=e38]
+          - generic [ref=e39]:
+            - generic [ref=e40]: contact@mymove.in
+            - generic [ref=e41]: +91 98765 43210
+      - generic [ref=e42]:
+        - strong [ref=e43]: MYMove
+        - text: © 2026. All rights reserved.
+  - region "Notifications alt+T"
+  - alert [ref=e213]

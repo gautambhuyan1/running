@@ -43,9 +43,9 @@
 ## Demo Accounts (password: password123)
 | Email | Role |
 |-------|------|
-| admin@mymove.in | Admin |
-| priya@mymove.in | Organiser |
-| rajesh@mymove.in | Organiser |
+| admin@mymoveclub.com | Admin |
+| priya@mymoveclub.com | Organiser |
+| rajesh@mymoveclub.com | Organiser |
 | ananya@gmail.com | Runner |
 | vikram@gmail.com | Runner |
 | meera@gmail.com | Runner |

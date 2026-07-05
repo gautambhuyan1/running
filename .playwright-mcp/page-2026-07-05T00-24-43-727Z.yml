@@ -1,0 +1,210 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link "MYMove" [ref=e6] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e7]:
+          - link "Events" [ref=e8] [cursor=pointer]:
+            - /url: /events
+          - link "Calendar" [ref=e9] [cursor=pointer]:
+            - /url: /calendar
+          - link "Fund Raising" [ref=e10] [cursor=pointer]:
+            - /url: /fundraising
+      - generic [ref=e11]:
+        - link [ref=e12] [cursor=pointer]:
+          - /url: /notifications
+          - img [ref=e13]
+        - button "TR Test Runner" [ref=e81]:
+          - generic [ref=e18]: TR
+          - generic [ref=e19]: Test Runner
+  - main [ref=e20]:
+    - generic [ref=e82]:
+      - generic [ref=e85]:
+        - generic [ref=e86]: India's Running Community
+        - heading "Find Your Next Race" [level=1] [ref=e87]
+        - paragraph [ref=e88]: Discover running events across India. From 5K fun runs to ultra marathons — register, track results, and celebrate your achievements.
+        - generic [ref=e89]:
+          - generic [ref=e90]:
+            - img [ref=e91]
+            - textbox "Search events, cities..." [ref=e94]
+          - link "Search Events" [ref=e95] [cursor=pointer]:
+            - /url: /events
+            - button "Search Events" [ref=e96]
+      - generic [ref=e98]:
+        - link "All Events" [ref=e99] [cursor=pointer]:
+          - /url: /events
+          - generic [ref=e100]: All Events
+        - link "5K" [ref=e101] [cursor=pointer]:
+          - /url: /events?category=5K
+          - generic [ref=e102]: 5K
+        - link "10K" [ref=e103] [cursor=pointer]:
+          - /url: /events?category=10K
+          - generic [ref=e104]: 10K
+        - link "Half Marathon" [ref=e105] [cursor=pointer]:
+          - /url: /events?category=HM
+          - generic [ref=e106]: Half Marathon
+        - link "Full Marathon" [ref=e107] [cursor=pointer]:
+          - /url: /events?category=FM
+          - generic [ref=e108]: Full Marathon
+        - link "Ultra" [ref=e109] [cursor=pointer]:
+          - /url: /events?category=Ultra
+          - generic [ref=e110]: Ultra
+      - generic [ref=e111]:
+        - generic [ref=e112]:
+          - heading "Featured Events" [level=2] [ref=e113]
+          - link "View All" [ref=e114] [cursor=pointer]:
+            - /url: /events
+            - text: View All
+            - img [ref=e115]
+        - generic [ref=e117]:
+          - link "5K 10K Pune Night Run Pune 09 May 2026 ₹500 onwards" [ref=e118] [cursor=pointer]:
+            - /url: /events/pune-night-run-2026
+            - generic [ref=e119]:
+              - generic [ref=e121]:
+                - generic [ref=e122]: 5K
+                - generic [ref=e123]: 10K
+              - generic [ref=e124]:
+                - heading "Pune Night Run" [level=3] [ref=e125]
+                - generic [ref=e126]:
+                  - generic [ref=e127]:
+                    - img [ref=e128]
+                    - text: Pune
+                  - generic [ref=e131]:
+                    - img [ref=e132]
+                    - text: 09 May 2026
+                - generic [ref=e135]: ₹500 onwards
+          - link "5K 10K HM FM Mumbai Marathon 2026 Mumbai 14 Jun 2026 ₹750 onwards" [ref=e136] [cursor=pointer]:
+            - /url: /events/mumbai-marathon-2026
+            - generic [ref=e137]:
+              - generic [ref=e139]:
+                - generic [ref=e140]: 5K
+                - generic [ref=e141]: 10K
+                - generic [ref=e142]: HM
+                - generic [ref=e143]: FM
+              - generic [ref=e144]:
+                - heading "Mumbai Marathon 2026" [level=3] [ref=e145]
+                - generic [ref=e146]:
+                  - generic [ref=e147]:
+                    - img [ref=e148]
+                    - text: Mumbai
+                  - generic [ref=e151]:
+                    - img [ref=e152]
+                    - text: 14 Jun 2026
+                - generic [ref=e155]: ₹750 onwards
+          - link "10K HM 5K Delhi Half Marathon Delhi 19 Jul 2026 ₹600 onwards" [ref=e156] [cursor=pointer]:
+            - /url: /events/delhi-half-marathon-2026
+            - generic [ref=e157]:
+              - generic [ref=e159]:
+                - generic [ref=e160]: 10K
+                - generic [ref=e161]: HM
+                - generic [ref=e162]: 5K
+              - generic [ref=e163]:
+                - heading "Delhi Half Marathon" [level=3] [ref=e164]
+                - generic [ref=e165]:
+                  - generic [ref=e166]:
+                    - img [ref=e167]
+                    - text: Delhi
+                  - generic [ref=e170]:
+                    - img [ref=e171]
+                    - text: 19 Jul 2026
+                - generic [ref=e174]: ₹600 onwards
+          - link "5K 10K HM FM Goa Beach Marathon Goa 11 Sep 2026 ₹800 onwards" [ref=e175] [cursor=pointer]:
+            - /url: /events/goa-beach-marathon-2026
+            - generic [ref=e176]:
+              - generic [ref=e178]:
+                - generic [ref=e179]: 5K
+                - generic [ref=e180]: 10K
+                - generic [ref=e181]: HM
+                - generic [ref=e182]: FM
+              - generic [ref=e183]:
+                - heading "Goa Beach Marathon" [level=3] [ref=e184]
+                - generic [ref=e185]:
+                  - generic [ref=e186]:
+                    - img [ref=e187]
+                    - text: Goa
+                  - generic [ref=e190]:
+                    - img [ref=e191]
+                    - text: 11 Sep 2026
+                - generic [ref=e194]: ₹800 onwards
+      - generic [ref=e195]:
+        - heading "Browse by City" [level=2] [ref=e196]
+        - generic [ref=e197]:
+          - link "Bangalore" [ref=e198] [cursor=pointer]:
+            - /url: /events?city=Bangalore
+            - generic [ref=e199]:
+              - img
+              - text: Bangalore
+          - link "Delhi" [ref=e200] [cursor=pointer]:
+            - /url: /events?city=Delhi
+            - generic [ref=e201]:
+              - img
+              - text: Delhi
+          - link "Goa" [ref=e202] [cursor=pointer]:
+            - /url: /events?city=Goa
+            - generic [ref=e203]:
+              - img
+              - text: Goa
+          - link "Mumbai" [ref=e204] [cursor=pointer]:
+            - /url: /events?city=Mumbai
+            - generic [ref=e205]:
+              - img
+              - text: Mumbai
+          - link "Pune" [ref=e206] [cursor=pointer]:
+            - /url: /events?city=Pune
+            - generic [ref=e207]:
+              - img
+              - text: Pune
+      - generic [ref=e209]:
+        - heading "How It Works" [level=2] [ref=e210]
+        - generic [ref=e211]:
+          - generic [ref=e212]:
+            - img [ref=e214]
+            - heading "Discover" [level=3] [ref=e217]
+            - paragraph [ref=e218]: Find running events near you filtered by city, distance, and date
+          - generic [ref=e219]:
+            - img [ref=e221]
+            - heading "Register" [level=3] [ref=e227]
+            - paragraph [ref=e228]: Choose your category, fill details, and pay securely via Razorpay
+          - generic [ref=e229]:
+            - img [ref=e231]
+            - heading "Race Day" [level=3] [ref=e234]
+            - paragraph [ref=e235]: Get your bib, run your race, and have your photos captured
+          - generic [ref=e236]:
+            - img [ref=e238]
+            - heading "Celebrate" [level=3] [ref=e241]
+            - paragraph [ref=e242]: View results, download certificates, and share your achievement
+  - contentinfo [ref=e55]:
+    - generic [ref=e56]:
+      - generic [ref=e57]:
+        - generic [ref=e58]:
+          - generic [ref=e59]: MYMove
+          - paragraph [ref=e60]: India's running event discovery, registration & ticketing platform.
+        - generic [ref=e61]:
+          - heading "Explore" [level=4] [ref=e62]
+          - generic [ref=e63]:
+            - link "All Events" [ref=e64] [cursor=pointer]:
+              - /url: /events
+            - link "Race Calendar" [ref=e65] [cursor=pointer]:
+              - /url: /calendar
+            - link "Half Marathons" [ref=e66] [cursor=pointer]:
+              - /url: /events?category=HM
+            - link "Full Marathons" [ref=e67] [cursor=pointer]:
+              - /url: /events?category=FM
+        - generic [ref=e68]:
+          - heading "For Organisers" [level=4] [ref=e69]
+          - generic [ref=e70]:
+            - link "List Your Event" [ref=e71] [cursor=pointer]:
+              - /url: /auth/register?role=organiser
+            - link "Organiser Dashboard" [ref=e72] [cursor=pointer]:
+              - /url: /organiser
+        - generic [ref=e73]:
+          - heading "Support" [level=4] [ref=e74]
+          - generic [ref=e75]:
+            - generic [ref=e76]: contact@mymove.in
+            - generic [ref=e77]: +91 98765 43210
+      - generic [ref=e78]:
+        - strong [ref=e79]: MYMove
+        - text: © 2026. All rights reserved.
+  - region "Notifications alt+T"
+  - alert [ref=e80]

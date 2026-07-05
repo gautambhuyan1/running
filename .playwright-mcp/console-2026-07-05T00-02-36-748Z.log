@@ -1,0 +1,2 @@
+[     327ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ https://www.mymoveclub.com/auth/login:0
+[   81010ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ https://www.mymoveclub.com/auth/login?redirect=/events/delhi-half-marathon-2026/register:0

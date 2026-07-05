@@ -1,0 +1,122 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link "MYMove" [ref=e6] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e7]:
+          - link "Events" [ref=e8] [cursor=pointer]:
+            - /url: /events
+          - link "Calendar" [ref=e9] [cursor=pointer]:
+            - /url: /calendar
+          - link "Fund Raising" [ref=e10] [cursor=pointer]:
+            - /url: /fundraising
+      - generic [ref=e11]:
+        - link [ref=e44] [cursor=pointer]:
+          - /url: /notifications
+          - img [ref=e45]
+        - button "AU Admin User" [ref=e48]:
+          - generic [ref=e50]: AU
+          - generic [ref=e51]: Admin User
+  - main [ref=e16]:
+    - generic [ref=e753]:
+      - generic [ref=e755]:
+        - generic [ref=e756]: Run for a cause
+        - heading "Fund Raising" [level=1] [ref=e757]
+        - paragraph [ref=e758]: Turn your kilometres into change. Create a fundraiser for your race and rally your supporters for a cause you believe in.
+      - generic [ref=e760]:
+        - generic [ref=e761]:
+          - generic [ref=e762]: 🏃
+          - heading "Pick your race" [level=3] [ref=e763]
+          - paragraph [ref=e764]: Choose a live event that has fundraising enabled by the organiser
+        - generic [ref=e765]:
+          - generic [ref=e766]: ❤️
+          - heading "Create your page" [level=3] [ref=e767]
+          - paragraph [ref=e768]: Pick an NGO, write your story, set a goal, and publish
+        - generic [ref=e769]:
+          - generic [ref=e770]: 💰
+          - heading "Collect donations" [level=3] [ref=e771]
+          - paragraph [ref=e772]: Share your page and receive donations via Razorpay
+      - generic [ref=e773]:
+        - heading "Active Campaigns" [level=2] [ref=e774]
+        - generic [ref=e775]:
+          - link "Active Campaign Pune Night Run Pune 09 May 2026 0 raised 0% of ₹2,00,000 goal 0 fundraisers" [ref=e776] [cursor=pointer]:
+            - /url: /fundraising/pune-night-run-2026
+            - generic [ref=e777]:
+              - generic [ref=e781]: Active Campaign
+              - generic [ref=e782]:
+                - heading "Pune Night Run" [level=3] [ref=e783]
+                - generic [ref=e784]:
+                  - generic [ref=e785]:
+                    - img [ref=e786]
+                    - text: Pune
+                  - generic [ref=e789]:
+                    - img [ref=e790]
+                    - text: 09 May 2026
+                - generic [ref=e792]:
+                  - generic [ref=e793]:
+                    - generic [ref=e794]:
+                      - img [ref=e795]
+                      - text: 0 raised
+                    - generic [ref=e798]: 0%
+                  - paragraph [ref=e800]: of ₹2,00,000 goal
+                - generic [ref=e801]:
+                  - img [ref=e802]
+                  - text: 0 fundraisers
+          - link "Active Campaign Mumbai Marathon 2026 Mumbai 14 Jun 2026 14,000 raised 3% of ₹5,00,000 goal 3 fundraisers" [ref=e807] [cursor=pointer]:
+            - /url: /fundraising/mumbai-marathon-2026
+            - generic [ref=e808]:
+              - generic [ref=e812]: Active Campaign
+              - generic [ref=e813]:
+                - heading "Mumbai Marathon 2026" [level=3] [ref=e814]
+                - generic [ref=e815]:
+                  - generic [ref=e816]:
+                    - img [ref=e817]
+                    - text: Mumbai
+                  - generic [ref=e820]:
+                    - img [ref=e821]
+                    - text: 14 Jun 2026
+                - generic [ref=e823]:
+                  - generic [ref=e824]:
+                    - generic [ref=e825]:
+                      - img [ref=e826]
+                      - text: 14,000 raised
+                    - generic [ref=e829]: 3%
+                  - paragraph [ref=e832]: of ₹5,00,000 goal
+                - generic [ref=e833]:
+                  - img [ref=e834]
+                  - text: 3 fundraisers
+  - contentinfo [ref=e19]:
+    - generic [ref=e20]:
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - generic [ref=e23]: MYMove
+          - paragraph [ref=e24]: India's running event discovery, registration & ticketing platform.
+        - generic [ref=e25]:
+          - heading "Explore" [level=4] [ref=e26]
+          - generic [ref=e27]:
+            - link "All Events" [ref=e28] [cursor=pointer]:
+              - /url: /events
+            - link "Race Calendar" [ref=e29] [cursor=pointer]:
+              - /url: /calendar
+            - link "Half Marathons" [ref=e30] [cursor=pointer]:
+              - /url: /events?category=HM
+            - link "Full Marathons" [ref=e31] [cursor=pointer]:
+              - /url: /events?category=FM
+        - generic [ref=e32]:
+          - heading "For Organisers" [level=4] [ref=e33]
+          - generic [ref=e34]:
+            - link "List Your Event" [ref=e35] [cursor=pointer]:
+              - /url: /auth/register?role=organiser
+            - link "Organiser Dashboard" [ref=e36] [cursor=pointer]:
+              - /url: /organiser
+        - generic [ref=e37]:
+          - heading "Support" [level=4] [ref=e38]
+          - generic [ref=e39]:
+            - generic [ref=e40]: contact@mymove.in
+            - generic [ref=e41]: +91 98765 43210
+      - generic [ref=e42]:
+        - strong [ref=e43]: MYMove
+        - text: © 2026. All rights reserved.
+  - region "Notifications alt+T"
+  - alert [ref=e213]

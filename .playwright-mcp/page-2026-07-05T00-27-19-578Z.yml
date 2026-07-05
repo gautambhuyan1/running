@@ -1,0 +1,89 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link "MYMove" [ref=e6] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e7]:
+          - link "Events" [ref=e8] [cursor=pointer]:
+            - /url: /events
+          - link "Calendar" [ref=e9] [cursor=pointer]:
+            - /url: /calendar
+          - link "Fund Raising" [ref=e10] [cursor=pointer]:
+            - /url: /fundraising
+      - generic [ref=e11]:
+        - link "Sign In" [ref=e12] [cursor=pointer]:
+          - /url: /auth/login
+          - button "Sign In" [ref=e13]
+        - link "Get Started" [ref=e14] [cursor=pointer]:
+          - /url: /auth/register
+          - button "Get Started" [ref=e15]
+  - main [ref=e16]:
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - heading "Welcome Back" [level=1] [ref=e20]
+        - paragraph [ref=e21]: Sign in to your MYMove account
+      - button "Continue with Google" [disabled]:
+        - img
+        - text: Continue with Google
+      - generic [ref=e22]:
+        - separator
+        - generic [ref=e23]: or
+        - separator
+      - generic [ref=e24]:
+        - generic [ref=e25]:
+          - generic [ref=e26]: Email
+          - textbox "Email" [ref=e27]:
+            - /placeholder: you@example.com
+        - generic [ref=e28]:
+          - generic [ref=e29]: Password
+          - generic [ref=e30]:
+            - textbox "Password" [ref=e31]:
+              - /placeholder: Enter password
+            - button [ref=e32]:
+              - img [ref=e33]
+        - button "Sign In" [ref=e36]
+      - generic [ref=e37]:
+        - paragraph [ref=e38]: "Demo Accounts (password: password123)"
+        - generic [ref=e39]:
+          - 'button "Runner: ananya@gmail.com" [ref=e40]'
+          - 'button "Organiser: priya@mymove.in" [ref=e41]'
+          - 'button "Admin: admin@mymove.in" [ref=e42]'
+      - paragraph [ref=e43]:
+        - text: Don't have an account?
+        - link "Sign Up" [ref=e44] [cursor=pointer]:
+          - /url: /auth/register
+  - contentinfo [ref=e45]:
+    - generic [ref=e46]:
+      - generic [ref=e47]:
+        - generic [ref=e48]:
+          - generic [ref=e49]: MYMove
+          - paragraph [ref=e50]: India's running event discovery, registration & ticketing platform.
+        - generic [ref=e51]:
+          - heading "Explore" [level=4] [ref=e52]
+          - generic [ref=e53]:
+            - link "All Events" [ref=e54] [cursor=pointer]:
+              - /url: /events
+            - link "Race Calendar" [ref=e55] [cursor=pointer]:
+              - /url: /calendar
+            - link "Half Marathons" [ref=e56] [cursor=pointer]:
+              - /url: /events?category=HM
+            - link "Full Marathons" [ref=e57] [cursor=pointer]:
+              - /url: /events?category=FM
+        - generic [ref=e58]:
+          - heading "For Organisers" [level=4] [ref=e59]
+          - generic [ref=e60]:
+            - link "List Your Event" [ref=e61] [cursor=pointer]:
+              - /url: /auth/register?role=organiser
+            - link "Organiser Dashboard" [ref=e62] [cursor=pointer]:
+              - /url: /organiser
+        - generic [ref=e63]:
+          - heading "Support" [level=4] [ref=e64]
+          - generic [ref=e65]:
+            - generic [ref=e66]: contact@mymove.in
+            - generic [ref=e67]: +91 98765 43210
+      - generic [ref=e68]:
+        - strong [ref=e69]: MYMove
+        - text: © 2026. All rights reserved.
+  - region "Notifications alt+T"
+  - alert [ref=e70]
