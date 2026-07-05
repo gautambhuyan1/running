@@ -11,24 +11,28 @@ import { Bell, CheckCheck } from "lucide-react";
 import { format } from "date-fns";
 
 export default function NotificationsPage() {
-  const { user } = useAuth();
+  const { user, isLoading: authLoading } = useAuth();
   const router = useRouter();
   const [notifications, setNotifications] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (authLoading) return;
     if (!user) { router.push("/auth/login"); return; }
     api.getNotifications().then((d) => setNotifications(d.notifications)).catch(() => {}).finally(() => setLoading(false));
-  }, [user, router]);
+  }, [user, authLoading, router]);
 
   const markAllRead = async () => {
     await api.markAllNotificationsRead();
     setNotifications(notifications.map((n) => ({ ...n, isRead: true })));
+    window.dispatchEvent(new CustomEvent("notificationsRead", { detail: { unreadCount: 0 } }));
   };
 
   const markRead = async (id: string) => {
     await api.markNotificationRead(id);
     setNotifications(notifications.map((n) => n.id === id ? { ...n, isRead: true } : n));
+    const newUnread = notifications.filter((n) => !n.isRead && n.id !== id).length;
+    window.dispatchEvent(new CustomEvent("notificationsRead", { detail: { unreadCount: newUnread } }));
   };
 
   if (loading) {

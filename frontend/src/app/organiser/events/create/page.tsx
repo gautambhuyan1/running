@@ -18,7 +18,7 @@ type Category = { name: string; price: string; maxParticipants: string };
 type Faq = { question: string; answer: string };
 
 export default function CreateEventPage() {
-  const { user } = useAuth();
+  const { user, isLoading: authLoading } = useAuth();
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -40,6 +40,7 @@ export default function CreateEventPage() {
 
   const [faqs, setFaqs] = useState<Faq[]>([]);
 
+  if (authLoading) return null;
   if (!user || (user.role !== "organiser" && user.role !== "admin")) {
     router.push("/");
     return null;

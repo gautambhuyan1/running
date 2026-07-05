@@ -99,6 +99,9 @@ router.get("/dashboard", authenticate, requireRole("organiser", "admin"), async 
         categories: {
           include: { _count: { select: { registrations: true } } },
         },
+        campaign: {
+          select: { id: true, goalAmount: true, description: true },
+        },
       },
     });
 
@@ -126,6 +129,7 @@ router.get("/dashboard", authenticate, requireRole("organiser", "admin"), async 
         status: e.status,
         eventDate: e.eventDate,
         registrations: e.categories.reduce((sum, cat) => sum + cat._count.registrations, 0),
+        campaign: e.campaign ?? null,
       })),
     });
   } catch (error) {

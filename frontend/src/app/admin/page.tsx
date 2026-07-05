@@ -38,7 +38,7 @@ const emptyEvent = {
 };
 
 export default function AdminPage() {
-  const { user } = useAuth();
+  const { user, isLoading: authLoading } = useAuth();
   const router = useRouter();
   const [analytics, setAnalytics] = useState<any>(null);
   const [pendingEvents, setPendingEvents] = useState<any[]>([]);
@@ -63,15 +63,17 @@ export default function AdminPage() {
   };
 
   useEffect(() => {
+    if (authLoading) return;
     if (!user || user.role !== "admin") { router.push("/"); return; }
     loadData();
-  }, [user, router]);
+  }, [user, authLoading, router]);
 
   const handleApprove = async (id: string, action: "approve" | "reject") => {
     try {
       await api.approveEvent(id, action);
       setPendingEvents(pendingEvents.filter((e) => e.id !== id));
       setAllEvents(allEvents.map((e) => e.id === id ? { ...e, status: action === "approve" ? "live" : "draft" } : e));
+      api.getAdminAnalytics().then(setAnalytics).catch(() => {});
       toast.success(`Event ${action}d`);
     } catch (error: any) {
       toast.error(error.message);

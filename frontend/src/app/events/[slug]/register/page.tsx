@@ -18,7 +18,7 @@ const steps = ["Select Category", "Confirm Details", "Payment", "Confirmation"];
 export default function RegisterPage() {
   const { slug } = useParams<{ slug: string }>();
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, isLoading: authLoading } = useAuth();
   const [event, setEvent] = useState<any>(null);
   const [step, setStep] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState<any>(null);
@@ -27,6 +27,7 @@ export default function RegisterPage() {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
+    if (authLoading) return;
     if (!user) {
       router.push(`/auth/login?redirect=/events/${slug}/register`);
       return;
@@ -34,7 +35,7 @@ export default function RegisterPage() {
     if (slug) {
       api.getEvent(slug).then(setEvent).catch(() => {}).finally(() => setLoading(false));
     }
-  }, [slug, user, router]);
+  }, [slug, user, authLoading, router]);
 
   const handleRegister = async () => {
     if (!selectedCategory) return;

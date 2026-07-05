@@ -57,12 +57,12 @@ router.get("/", optionalAuth, async (req, res) => {
     const where: any = {};
 
     if (status) where.status = status;
-    if (city) where.city = { contains: city };
+    if (city) where.city = { contains: city, mode: "insensitive" };
     if (search) {
       where.OR = [
-        { title: { contains: search } },
-        { city: { contains: search } },
-        { description: { contains: search } },
+        { title: { contains: search, mode: "insensitive" } },
+        { city: { contains: search, mode: "insensitive" } },
+        { description: { contains: search, mode: "insensitive" } },
       ];
     }
     if (dateFrom || dateTo) {

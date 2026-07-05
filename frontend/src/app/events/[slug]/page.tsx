@@ -50,6 +50,18 @@ export default function EventDetailPage() {
     );
   }
 
+  const canView = event.status === "live" || event.status === "completed" ||
+    (user && (user.role === "admin" || (user.role === "organiser" && event.organiser?.id === user.id)));
+
+  if (!canView) {
+    return (
+      <div className="max-w-5xl mx-auto px-4 py-20 text-center">
+        <h1 className="text-xl font-bold mb-2">Event Not Found</h1>
+        <Link href="/events"><Button variant="outline">Browse Events</Button></Link>
+      </div>
+    );
+  }
+
   const isDeadlinePassed = new Date() > new Date(event.regDeadline);
   const isLive = event.status === "live";
 
@@ -163,9 +175,9 @@ export default function EventDetailPage() {
         </div>
 
         {/* Sidebar — Pricing & Registration */}
-        <div className="space-y-4">
+        <div className="space-y-4 self-start sticky top-20">
           {/* Registration Card */}
-          <Card className="p-5 border-[#E8E4DE] sticky top-20">
+          <Card className="p-5 border-[#E8E4DE]">
             <h3 className="font-[family-name:var(--font-sora)] font-semibold text-base mb-1">Registration</h3>
             {!isDeadlinePassed && isLive ? (
               <p className="text-xs text-[#6B6560] mb-4">

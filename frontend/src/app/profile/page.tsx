@@ -16,15 +16,16 @@ import { format } from "date-fns";
 import { toast } from "sonner";
 
 export default function ProfilePage() {
-  const { user } = useAuth();
+  const { user, isLoading: authLoading } = useAuth();
   const router = useRouter();
   const [profile, setProfile] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (authLoading) return;
     if (!user) { router.push("/auth/login"); return; }
     api.getProfile().then(setProfile).catch(() => {}).finally(() => setLoading(false));
-  }, [user, router]);
+  }, [user, authLoading, router]);
 
   const handleDownloadCert = async (regId: string) => {
     try {

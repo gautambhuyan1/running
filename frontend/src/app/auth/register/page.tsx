@@ -95,11 +95,11 @@ export default function RegisterPage() {
           </div>
           <div>
             <Label htmlFor="password" className="text-sm">Password</Label>
-            <Input id="password" type="password" placeholder="Min 6 characters" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required minLength={6} />
+            <Input id="password" type="password" autoComplete="new-password" placeholder="Min 6 characters" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required minLength={6} />
           </div>
           <div>
             <Label htmlFor="confirmPassword" className="text-sm">Confirm Password</Label>
-            <Input id="confirmPassword" type="password" placeholder="Repeat password" value={form.confirmPassword} onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })} required />
+            <Input id="confirmPassword" type="password" autoComplete="new-password" placeholder="Repeat password" value={form.confirmPassword} onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })} required />
           </div>
 
           {form.role === "organiser" && (

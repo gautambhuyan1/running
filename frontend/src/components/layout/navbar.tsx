@@ -26,6 +26,14 @@ export function Navbar() {
     }
   }, [user]);
 
+  useEffect(() => {
+    const handler = (e: Event) => {
+      setUnreadCount((e as CustomEvent).detail.unreadCount);
+    };
+    window.addEventListener("notificationsRead", handler);
+    return () => window.removeEventListener("notificationsRead", handler);
+  }, []);
+
   const navLinks = [
     { href: "/events", label: "Events" },
     { href: "/calendar", label: "Calendar" },

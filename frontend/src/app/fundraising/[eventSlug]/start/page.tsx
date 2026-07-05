@@ -14,7 +14,7 @@ import { Heart, ArrowLeft } from "lucide-react";
 
 export default function StartFundraiserPage() {
   const { eventSlug } = useParams<{ eventSlug: string }>();
-  const { user } = useAuth();
+  const { user, isLoading: authLoading } = useAuth();
   const router = useRouter();
 
   const [event, setEvent] = useState<any>(null);
@@ -33,6 +33,7 @@ export default function StartFundraiserPage() {
   });
 
   useEffect(() => {
+    if (authLoading) return;
     if (!user) { router.push("/auth/login"); return; }
     async function load() {
       try {
@@ -48,7 +49,7 @@ export default function StartFundraiserPage() {
       }
     }
     load();
-  }, [user, eventSlug, router]);
+  }, [user, authLoading, eventSlug, router]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();

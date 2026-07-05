@@ -13,7 +13,7 @@ import { Calendar, Users, IndianRupee, TrendingUp, Plus, Eye, Heart } from "luci
 import { format } from "date-fns";
 
 export default function OrganiserDashboardPage() {
-  const { user } = useAuth();
+  const { user, isLoading: authLoading } = useAuth();
   const router = useRouter();
   const [dashboard, setDashboard] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -22,20 +22,17 @@ export default function OrganiserDashboardPage() {
   const [campaignSaving, setCampaignSaving] = useState<string | null>(null);
 
   useEffect(() => {
+    if (authLoading) return;
     if (!user || (user.role !== "organiser" && user.role !== "admin")) {
       router.push("/"); return;
     }
-    api.getOrganiserDashboard().then(async (d) => {
+    api.getOrganiserDashboard().then((d) => {
       setDashboard(d);
       const campaignMap: Record<string, any> = {};
-      await Promise.allSettled(
-        (d.events ?? []).map(async (ev: any) => {
-          try { campaignMap[ev.id] = await api.getEventCampaign(ev.id); } catch { campaignMap[ev.id] = null; }
-        })
-      );
+      (d.events ?? []).forEach((ev: any) => { campaignMap[ev.id] = ev.campaign ?? null; });
       setCampaigns(campaignMap);
     }).catch(() => {}).finally(() => setLoading(false));
-  }, [user, router]);
+  }, [user, authLoading, router]);
 
   const statusColors: Record<string, string> = {
     draft: "bg-gray-100 text-gray-700",
